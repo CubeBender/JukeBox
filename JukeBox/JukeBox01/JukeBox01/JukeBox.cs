@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace JukeBox01
 {
-    class JukeBox : IXmlSerializable
+    public class JukeBox
     {
         [XmlElement("jukeboxName")]
         public string name;
@@ -87,7 +86,7 @@ namespace JukeBox01
         public void deleteAllSongs() { albums.Clear(); }
 
         ////////////////////////////////////////////////////////////
-        // EXPORT METHODS
+        // PRINT METHODS
 
         public void printJukeBox()
         {
@@ -96,36 +95,6 @@ namespace JukeBox01
             {
                 album.printAlbum();
             }
-        }
-
-        ////////////////////////////////////////////////////////////
-        // EXPORT METHODS
-
-        // Method for exporting to XML file
-        public void exportToXML()
-        {
-            throw new NotImplementedException();
-
-
-            foreach (Album album in albums)
-            {
-                album.exportToXML();
-            }
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
         }
 
         ////////////////////////////////////////////////////////////

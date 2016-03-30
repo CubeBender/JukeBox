@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace JukeBox01
 {
-    class Song : IXmlSerializable
+    public class Song
     {
         [XmlElement("songName")]
-        public string name { get; set; }
+        public string name;
         [XmlElement("songLength")]
-        public int length { get; set; }
+        public int length;
         [XmlElement("songText")]
-        private string text;
+        public string text;
 
         ////////////////////////////////////////////////////////////
         // CONSTRUCTORS
@@ -58,30 +57,6 @@ namespace JukeBox01
             Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
             Console.WriteLine(this.text);
         }
-
-        ////////////////////////////////////////////////////////////
-        // EXPORT METHODS
-
-        // Method for exporting to XML file
-        public void exportToXML()
-        {
-            throw new NotImplementedException();
-        }
-
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
-        }
-
+   
     }
 }

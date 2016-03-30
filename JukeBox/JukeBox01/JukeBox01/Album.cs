@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace JukeBox01
 {
-    class Album : IXmlSerializable
+    public class Album
     {
         [XmlElement("albumName")]
         public string name;
@@ -108,35 +107,6 @@ namespace JukeBox01
             {
                 song.printSong();
             }
-        }
-
-        ////////////////////////////////////////////////////////////
-        // EXPORT METHODS
-
-        // Method for exporting to XML file
-        public void exportToXML()
-        {
-            throw new NotImplementedException();
-
-            foreach (Song song in songs)
-            {
-                song.exportToXML();
-            }
-        }
-
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            throw new NotImplementedException();
         }
 
         ////////////////////////////////////////////////////////////
