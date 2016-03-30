@@ -1,0 +1,87 @@
+﻿using System;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
+namespace JukeBox01
+{
+    class Song : IXmlSerializable
+    {
+        [XmlElement("songName")]
+        public string name { get; set; }
+        [XmlElement("songLength")]
+        public int length { get; set; }
+        [XmlElement("songText")]
+        private string text;
+
+        ////////////////////////////////////////////////////////////
+        // CONSTRUCTORS
+
+        // Constructors for Song class
+        // Constructor with parameters
+        public Song(string name = "unknown name", int length = 0, string text = "No text!")
+        {
+            this.name = name;
+            this.length = length;
+            this.text = text;
+        }
+        // Constructor without parameters
+        public Song()
+        {
+            this.name = "unknown name";
+            this.length = 0;
+            this.text = "No text!";
+        }
+
+        ////////////////////////////////////////////////////////////
+        // DATA METHODS
+
+        // Methods for getting Song private data
+        public string getSongName() { return name; }
+        public int getLength() { return length; }
+        public string getText() { return text; }
+
+        // Methods for changing private data of Song class
+        public void changeName(string name) { this.name = name; }
+        public void changeLength(int length) { this.length = length; }
+        public void changeText(string text) { this.text = text; }
+
+        ////////////////////////////////////////////////////////////
+        // PRINT METHODS
+
+        public void printSong()
+        {
+            Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
+        }
+        public void printSongAll()
+        {
+            Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
+            Console.WriteLine(this.text);
+        }
+
+        ////////////////////////////////////////////////////////////
+        // EXPORT METHODS
+
+        // Method for exporting to XML file
+        public void exportToXML()
+        {
+            throw new NotImplementedException();
+        }
+
+        public XmlSchema GetSchema()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+}
