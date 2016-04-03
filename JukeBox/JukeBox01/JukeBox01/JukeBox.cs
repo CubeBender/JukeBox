@@ -18,18 +18,25 @@ namespace JukeBox01
         // CONSTRUCTORS
 
         // Constructor for Album class
-        // Constructor with parameters
-        public JukeBox(string name = "no name", string author = "unknown author")
-        {
-            this.name = name;
-            this.author = author;
-            this.albums = new List<Album>();
-        }
         // Constructor without parameters
         public JukeBox()
         {
             this.name = "no name";
             this.author = "unknown author";
+            this.albums = new List<Album>();
+        }
+        // Copy constructor
+        public JukeBox(JukeBox jukebox)
+        {
+            this.name = jukebox.name;
+            this.author = jukebox.author;
+            this.albums = new List<Album> (jukebox.albums);
+        }
+        // Constructor with parameters
+        public JukeBox(string name = "no name", string author = "unknown author")
+        {
+            this.name = name;
+            this.author = author;
             this.albums = new List<Album>();
         }
 

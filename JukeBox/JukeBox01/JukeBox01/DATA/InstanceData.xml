@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<JukeBox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <jukeboxName>TomiJukebox</jukeboxName>
+  <jukeboxAuthor>CubeBender</jukeboxAuthor>
+  <jukeboxAlbums>
+    <albumName>Mama</albumName>
+    <albumArtist>Lunetic</albumArtist>
+    <albumGenre>pop</albumGenre>
+    <albumYear>1996</albumYear>
+    <albumSongs>
+      <songName>Jsi moje mama</songName>
+      <songLength>183</songLength>
+      <songText>Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Jsi moje tata</songName>
+      <songLength>194</songLength>
+      <songText>Jsi moje tata, moje tata, kterou ja mam nadevse rad. Jsi jak kouzelny vil, co mi dava chut se smat!</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Jsi moje sestra</songName>
+      <songLength>162</songLength>
+      <songText>Jsi moje sestra, moje sestra, kterou ja mam nadevse rad. Jsi jak kouzelna dcera vily, co mi dava chut se smat</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Jsi moje mama</songName>
+      <songLength>183</songLength>
+      <songText>Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!</songText>
+    </albumSongs>
+  </jukeboxAlbums>
+</JukeBox>
