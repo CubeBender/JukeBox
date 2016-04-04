@@ -120,8 +120,7 @@ namespace JukeBox01
             //// Path to executable
             //Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
 
-            Console.ReadKey();
-            //xxxxx
+            Console.ReadKey();////tak ještě jednouuuu 
         }
     }
 }
