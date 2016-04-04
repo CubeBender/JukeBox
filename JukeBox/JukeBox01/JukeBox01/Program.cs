@@ -122,9 +122,7 @@ namespace JukeBox01
 
             Console.ReadKey();
 
-            ///////TESTÍČEK :D
-
-            ///ještě něco.......... 
+            //DELETIngsdaw+šě
         }
     }
 }
