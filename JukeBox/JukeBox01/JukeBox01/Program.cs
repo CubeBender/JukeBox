@@ -79,6 +79,10 @@ namespace JukeBox01
                         Console.WriteLine(" is a deadly spell! You have escaped!");
                         exit = true;
                         break;
+                    case 'o':
+                    case 'O':
+                        Console.WriteLine(" - ERROR: TARGETING SYSTEM OFFLINE!");
+                        break;
                     default:
                         Console.WriteLine(" is NOT a VALID imput!");
                         break;
