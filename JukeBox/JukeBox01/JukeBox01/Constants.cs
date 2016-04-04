@@ -14,17 +14,25 @@ namespace JukeBox01
         // Local path
         public static string LOCALPATH = System.AppDomain.CurrentDomain.BaseDirectory;
 
+
+        ////////////////////////////////////////////////////////////
+        // FOLDER NAMES
+
         // Instance data path
-        public const string DATAPATH = "\\DATA";
+        public const string DATAFOLDER = "\\DATA";
 
         // Export data path
-        public const string EXPORTPATH = "\\EXPORT";
+        public const string EXPORTFOLDER = "\\EXPORT";
 
         ////////////////////////////////////////////////////////////
         // FILE NAMES
 
         // Perzistance data file name
-        public const string EXPORTFILENAME = "InstanceData";
+        public const string DATAFILENAME = "InstanceData";
+
+        // Default export file name
+
+        public const string EXPORTFILENAME = "export";
 
     }
 }

@@ -13,7 +13,7 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // IMPORT / EXPORT FUNCTIONS
 
-        static JukeBox importFromXml(string path, string filename = "export")
+        static JukeBox importFromXml(string path, string filename = Constants.EXPORTFILENAME)
         {
             // Set path to program directory if it is not specified
             if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory; }
@@ -29,7 +29,7 @@ namespace JukeBox01
             return import;
         }
 
-        static void exportToXml(JukeBox jukebox, string path, string filename = "export")
+        static void exportToXml(JukeBox jukebox, string path, string filename = Constants.EXPORTFILENAME)
         {
             // Set path to program directory if it is not specified
             if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory; }
@@ -57,7 +57,7 @@ namespace JukeBox01
             // Testing XML Perzistance
 
             // Loading saved data from last instance
-            JukeBox jukeboxinstance = importFromXml(Constants.LOCALPATH + Constants.DATAPATH, Constants.EXPORTFILENAME);
+            JukeBox jukeboxinstance = importFromXml(Constants.LOCALPATH + Constants.DATAFOLDER, Constants.DATAFILENAME);
 
             bool exit = false;
 
@@ -94,7 +94,7 @@ namespace JukeBox01
             // Printing loaded data
             jukeboxinstance.printJukeBox();
             // Saving instance data
-            exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAPATH, Constants.EXPORTFILENAME);
+            exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAFOLDER, Constants.DATAFILENAME);
 
             //// Testing data imput
             //Song song1 = new Song("Jsi moje mama", 183, "Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!");
