@@ -121,8 +121,7 @@ namespace JukeBox01
             //Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
 
             Console.ReadKey();
-
-            //DELETIngsdaw+šě
+            //xxxxx
         }
     }
 }
