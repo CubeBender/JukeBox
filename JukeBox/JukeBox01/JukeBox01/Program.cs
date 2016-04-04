@@ -97,9 +97,9 @@ namespace JukeBox01
             //// Path to executable
             //Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
 
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //DAVID'S SANDBOX - DONT TOUCH MY SAND!
-            Console.WriteLine("#################### Trying editing methods ####################\r\n");
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //DAVID'S SANDBOX - DONT TOUCH MY SAND!
+        Console.WriteLine("#################### Trying editing methods ####################\r\n");
 
             string help = "You need help bro..."
                     + "\r\n1. print jukebox <all, author, name> or <-all, -author, -name>"
@@ -108,7 +108,7 @@ namespace JukeBox01
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Type HELP or ? to show commands\r\n"
-                + "Program automaticly deletes white spaces, type without or with spaces.;
+                + "Program automaticly deletes white spaces, type without or with spaces.;");
             Console.ResetColor();
             
             bool isValid = false;
@@ -174,7 +174,7 @@ namespace JukeBox01
                     case "changejukeboxname":
                     case "changejukebox-name":
                         Console.WriteLine("Jukebox name " + jukeboxinstance.getJukeboxName()
-                            + " has been changed to " + newJukeboxName + "."
+                            + " has been changed to " + newJukeboxName + ".");
                         break;
 
                     case "changejukeboxauthor":
