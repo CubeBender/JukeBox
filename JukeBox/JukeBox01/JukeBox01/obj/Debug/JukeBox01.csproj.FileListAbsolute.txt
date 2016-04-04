@@ -13,3 +13,4 @@ C:\Users\Tomáš\Source\GitRepos\JukeBox\JukeBox\JukeBox01\JukeBox01\bin\Debug\D
 C:\Users\Tomáš\Source\GitRepos\JukeBox\JukeBox\JukeBox01\JukeBox01\bin\Debug\JukeBox01.exe
 C:\Users\Tomáš\Source\GitRepos\JukeBox\JukeBox\JukeBox01\JukeBox01\bin\Debug\JukeBox01.pdb
 C:\Users\Tomáš\Source\GitRepos\JukeBox\JukeBox\JukeBox01\JukeBox01\obj\Debug\JukeBox01.csprojResolveAssemblyReference.cache
+C:\Users\danie_000\Source\Repos\JukeBox\JukeBox\JukeBox01\JukeBox01\bin\Debug\JukeBox01.exe.config

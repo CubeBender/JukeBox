@@ -121,6 +121,8 @@ namespace JukeBox01
             //Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
 
             Console.ReadKey();
+
+            ///////TESTÍČEK :D
         }
     }
 }
