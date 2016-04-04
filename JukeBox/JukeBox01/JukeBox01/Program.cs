@@ -108,7 +108,7 @@ namespace JukeBox01
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Type HELP or ? to show commands\r\n"
-                + "Program automaticly deletes white spaces, type without or with spaces");
+                + "Program automaticly deletes white spaces, type without or with spaces.;
             Console.ResetColor();
             
             bool isValid = false;
@@ -174,13 +174,13 @@ namespace JukeBox01
                     case "changejukeboxname":
                     case "changejukebox-name":
                         Console.WriteLine("Jukebox name " + jukeboxinstance.getJukeboxName()
-                            + " has been changed to " + newJukeboxName);
+                            + " has been changed to " + newJukeboxName + "."
                         break;
 
                     case "changejukeboxauthor":
                     case "changejukebox-author":
                         Console.WriteLine("Jukebox author " + jukeboxinstance.getAuthorName()
-                            + " has been changed to " + newAuthorName);
+                            + " has been changed to " + newAuthorName + ".");
                         break;
 
                     case "export":
