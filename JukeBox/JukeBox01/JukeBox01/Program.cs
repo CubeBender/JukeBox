@@ -105,7 +105,7 @@ namespace JukeBox01
             Console.WriteLine("Type HELP or ? to show commands\r\n"
                 + "Program automaticly deletes white spaces, type without or with spaces");
             Console.ResetColor();
-            string filename = "tmp";
+            string filename = Constants.EXPORTFILENAME;
             bool isValid = false;
             while (!isValid)
             {
@@ -142,7 +142,7 @@ namespace JukeBox01
 
                     case "export":
                         Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
-                        exportToXml(jukeboxinstance, "Export\\", filename);
+                        exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAPATH, filename);
                         break;
 
                     case "help":
