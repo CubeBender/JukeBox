@@ -120,7 +120,82 @@ namespace JukeBox01
             //// Path to executable
             //Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
 
-            Console.ReadKey();
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //DAVID'S SANDBOX - DONT TOUCH MY SAND!
+            Console.WriteLine("#################### Trying editing methods ####################\r\n");
+
+            string help = "1. print jukebox <all, author, name> or <-all, -author, -name>"
+                    + "\r\n2. export <filename> or export jukebox <filename> - if you wont type filename, it will be automaticly named 'tmp'"
+                    + "\r\n3. exit or quit";
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Type HELP or ? to show commands\r\n"
+                + "Program automaticly deletes white spaces, type without or with spaces");
+            Console.ResetColor();
+            string filename = "tmp";
+            bool isValid = false;
+            while (!isValid)
+            {
+                Console.WriteLine("Command:");
+                string input = Console.ReadLine();
+                input = input.Replace(" ", "");
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                if (input == "?" || input == "jukebox") input = "help";
+                if (input.Contains("export"))
+                {
+                    filename = input.Replace("export", "");
+                    filename = filename.Replace("jukebox", "");
+                    input = "export";
+                }
+                switch (input.ToLowerInvariant())
+                {
+                    case "printjukebox":
+                    case "printjukeboxall":
+                    case "printjukebox-all":
+                        Console.WriteLine("Jukebox:\r\n");
+                        jukebox2.printJukeBox();
+                        break;
+
+                    case "printjukeboxname":
+                    case "printjukebox-name":
+                        Console.WriteLine("Jukebox Name: " + jukebox2.getJukeboxName());
+                        break;
+
+                    case "printjukeboxauthor":
+                    case "printjukebox-author":
+                        Console.WriteLine("Jukebox Author: " + jukebox2.getAuthorName());
+                        break;
+
+                    case "export":
+                        Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
+                        exportToXml(jukebox2, "Export\\", filename);
+                        break;
+
+                    case "help":
+                        Console.WriteLine(help);
+                        break;
+
+                    case "exit":
+                    case "quit":
+                        Console.WriteLine("Exiting...");
+                        System.Environment.Exit(0);
+                        break;
+
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Try again stupid...\r\n");
+                        Console.ResetColor();
+                        break;
+
+                }
+                Console.ResetColor();
+            }
+            Console.ReadLine();
+
+            Console.WriteLine("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                + "Exit program with any key m8...");
+            Console.ReadLine();
         }
     }
 }
