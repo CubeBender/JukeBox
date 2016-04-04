@@ -58,35 +58,7 @@ namespace JukeBox01
 
             // Loading saved data from last instance
             JukeBox jukeboxinstance = importFromXml(Constants.LOCALPATH + Constants.DATAPATH, Constants.EXPORTFILENAME);
-
-            bool exit = false;
-
-            do
-            {
-                // Console.Clear();
-                Console.WriteLine("Press \"A\"");
-                char imput = Console.ReadKey().KeyChar;
-
-
-                switch (imput)
-                {
-                    case 'a':
-                    case 'A':
-                        Console.WriteLine(" is a VALID imput!");
-                        break;
-                    case 'x':
-                    case 'X':
-                        Console.WriteLine(" is a deadly spell! You have escaped!");
-                        exit = true;
-                        break;
-                    default:
-                        Console.WriteLine(" is NOT a VALID imput!");
-                        break;
-
-                }
-
-            } while (!exit);
-
+            
             // Printing loaded data
             jukeboxinstance.printJukeBox();
             // Saving instance data
@@ -110,12 +82,12 @@ namespace JukeBox01
             //exportToXml(jukebox1, "C:\\Export", "export");
 
             //// Testing data import
-            //JukeBox jukebox2 = new JukeBox();
-            //jukebox2 = importFromXml("C:\\Export", "dummy");
-            //jukebox2.printJukeBox();
+            //JukeBox jukeboxinstance = new JukeBox();
+            //jukeboxinstance = importFromXml("C:\\Export", "dummy");
+            //jukeboxinstance.printJukeBox();
 
             //// Testing imported data export
-            //exportToXml(jukebox2, "C:\\Export", "jukebox2");
+            //exportToXml(jukeboxinstance, "C:\\Export", "jukeboxinstance");
 
             //// Path to executable
             //Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
@@ -124,7 +96,8 @@ namespace JukeBox01
             //DAVID'S SANDBOX - DONT TOUCH MY SAND!
             Console.WriteLine("#################### Trying editing methods ####################\r\n");
 
-            string help = "1. print jukebox <all, author, name> or <-all, -author, -name>"
+            string help = "You need help bro..."
+                    + "\r\n1. print jukebox <all, author, name> or <-all, -author, -name>"
                     + "\r\n2. export <filename> or export jukebox <filename> - if you wont type filename, it will be automaticly named 'tmp'"
                     + "\r\n3. exit or quit";
 
@@ -154,22 +127,22 @@ namespace JukeBox01
                     case "printjukeboxall":
                     case "printjukebox-all":
                         Console.WriteLine("Jukebox:\r\n");
-                        jukebox2.printJukeBox();
+                        jukeboxinstance.printJukeBox();
                         break;
 
                     case "printjukeboxname":
                     case "printjukebox-name":
-                        Console.WriteLine("Jukebox Name: " + jukebox2.getJukeboxName());
+                        Console.WriteLine("Jukebox Name: " + jukeboxinstance.getJukeboxName());
                         break;
 
                     case "printjukeboxauthor":
                     case "printjukebox-author":
-                        Console.WriteLine("Jukebox Author: " + jukebox2.getAuthorName());
+                        Console.WriteLine("Jukebox Author: " + jukeboxinstance.getAuthorName());
                         break;
 
                     case "export":
                         Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
-                        exportToXml(jukebox2, "Export\\", filename);
+                        exportToXml(jukeboxinstance, "Export\\", filename);
                         break;
 
                     case "help":
