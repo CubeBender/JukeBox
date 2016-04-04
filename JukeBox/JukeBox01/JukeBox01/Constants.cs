@@ -15,10 +15,10 @@ namespace JukeBox01
         public static string LOCALPATH = System.AppDomain.CurrentDomain.BaseDirectory;
 
         // Instance data path
-        public const string DATAPATH = "\\DATA";
+        public const string DATAPATH = "..\\..\\DATA";
 
         // Export data path
-        public const string EXPORTPATH = "\\EXPORT";
+        public const string EXPORTPATH = "..\\..\\EXPORT";
 
         ////////////////////////////////////////////////////////////
         // FILE NAMES

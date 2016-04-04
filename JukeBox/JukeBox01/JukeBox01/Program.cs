@@ -119,6 +119,7 @@ namespace JukeBox01
                 {
                     filename = input.Replace("export", "");
                     filename = filename.Replace("jukebox", "");
+                    if(filename == "") { filename = Constants.EXPORTFILENAME; }
                     input = "export";
                 }
                 switch (input.ToLowerInvariant())
@@ -142,7 +143,6 @@ namespace JukeBox01
 
                     case "export":
                         Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
-
                         exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.EXPORTPATH, filename);
                         break;
 
