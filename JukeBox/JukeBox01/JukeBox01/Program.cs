@@ -142,7 +142,8 @@ namespace JukeBox01
 
                     case "export":
                         Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
-                        exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAPATH, filename);
+
+                        exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.EXPORTPATH, filename);
                         break;
 
                     case "help":
