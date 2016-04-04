@@ -64,6 +64,11 @@ namespace JukeBox01
             // Saving instance data
             exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAPATH, Constants.EXPORTFILENAME);
 
+            // Default variables from jukebox 
+            string newJukeboxName = jukeboxinstance.getJukeboxName();
+            string newAuthorName = jukeboxinstance.getAuthorName();
+            string filename = Constants.EXPORTFILENAME;
+
             //// Testing data imput
             //Song song1 = new Song("Jsi moje mama", 183, "Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!");
             //Album album1 = new Album("Mama", "Lunetic", "pop", 1996);
@@ -98,14 +103,14 @@ namespace JukeBox01
 
             string help = "You need help bro..."
                     + "\r\n1. print jukebox <all, author, name> or <-all, -author, -name>"
-                    + "\r\n2. export <filename> or export jukebox <filename> - if you wont type filename, it will be automaticly named 'tmp'"
+                    + "\r\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
                     + "\r\n3. exit or quit";
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("Type HELP or ? to show commands\r\n"
                 + "Program automaticly deletes white spaces, type without or with spaces");
             Console.ResetColor();
-            string filename = Constants.EXPORTFILENAME;
+            
             bool isValid = false;
             while (!isValid)
             {
@@ -119,9 +124,34 @@ namespace JukeBox01
                 {
                     filename = input.Replace("export", "");
                     filename = filename.Replace("jukebox", "");
-                    if(filename == "") { filename = Constants.EXPORTFILENAME; }
+                    if (filename == "") { filename = Constants.EXPORTFILENAME; }
                     input = "export";
                 }
+
+                if (input.Contains("change"))
+                {
+                    string tmp = input.Replace("change", "");
+                    newJukeboxName = tmp;
+                    newAuthorName = tmp;
+                    if (input.Contains("name"))
+                    {
+                        newJukeboxName = newJukeboxName.Replace("jukeboxname", "");
+                        input = "changejukeboxname";
+                    }
+                    if (input.Contains("author"))
+                    {
+                        newAuthorName = newAuthorName.Replace("jukeboxauthor", "");
+                        input = "changejukeboxauthor";
+                    }
+                    if (newJukeboxName == "" || newAuthorName == "")
+                    {
+                        newJukeboxName = jukeboxinstance.getJukeboxName();
+                        newAuthorName = jukeboxinstance.getAuthorName();
+                    }
+
+                    
+                }
+
                 switch (input.ToLowerInvariant())
                 {
                     case "printjukebox":
@@ -133,19 +163,31 @@ namespace JukeBox01
 
                     case "printjukeboxname":
                     case "printjukebox-name":
-                        Console.WriteLine("Jukebox Name: " + jukeboxinstance.getJukeboxName());
+                        Console.WriteLine("Jukebox name: " + jukeboxinstance.getJukeboxName());
                         break;
 
                     case "printjukeboxauthor":
                     case "printjukebox-author":
-                        Console.WriteLine("Jukebox Author: " + jukeboxinstance.getAuthorName());
+                        Console.WriteLine("Jukebox author: " + jukeboxinstance.getAuthorName());
+                        break;
+
+                    case "changejukeboxname":
+                    case "changejukebox-name":
+                        Console.WriteLine("Jukebox name " + jukeboxinstance.getJukeboxName()
+                            + " has been changed to " + newJukeboxName);
+                        break;
+
+                    case "changejukeboxauthor":
+                    case "changejukebox-author":
+                        Console.WriteLine("Jukebox author " + jukeboxinstance.getAuthorName()
+                            + " has been changed to " + newAuthorName);
                         break;
 
                     case "export":
                         Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
                         exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.EXPORTPATH, filename);
                         break;
-
+                        
                     case "help":
                         Console.WriteLine(help);
                         break;

@@ -19,3 +19,4 @@ C:\Users\danie_000\Source\Repos\JukeBox\JukeBox\JukeBox01\JukeBox01\bin\Debug\Ju
 C:\Users\danie_000\Source\Repos\JukeBox\JukeBox\JukeBox01\JukeBox01\bin\Debug\JukeBox01.pdb
 C:\Users\danie_000\Source\Repos\JukeBox\JukeBox\JukeBox01\JukeBox01\obj\Debug\JukeBox01.exe
 C:\Users\danie_000\Source\Repos\JukeBox\JukeBox\JukeBox01\JukeBox01\obj\Debug\JukeBox01.pdb
+C:\Users\danie_000\Source\Repos\JukeBox\JukeBox\JukeBox01\JukeBox01\obj\Debug\JukeBox01.csprojResolveAssemblyReference.cache
