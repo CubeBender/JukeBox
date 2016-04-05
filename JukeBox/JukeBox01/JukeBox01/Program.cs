@@ -466,6 +466,10 @@ namespace JukeBox01
                                         jukeboxinstance.changeAuthorName(newAuthorName);
                                         printSuccess("Author \"" + oldAuthorName + "\" has been changed to \"" + newAuthorName + "\".");
                                         break;
+
+                                    default:
+                                        printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                        break;
                                 }
                                 break;
 
