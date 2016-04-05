@@ -36,7 +36,7 @@ namespace JukeBox01
             // Construct a serializer and set the type
             var serializer = new XmlSerializer(typeof(JukeBox));
             // Prepare write data thru text stream
-            TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
+                TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
             // Serialize the specified data to file
             serializer.Serialize(writer, jukebox);
             // Manually closing the writer might be necessary!
@@ -59,6 +59,8 @@ namespace JukeBox01
             // Loading saved data from last instance
             JukeBox jukeboxinstance = importFromXml(Constants.LOCALPATH + Constants.DATAPATH, Constants.EXPORTFILENAME);
             
+            // OPEN saved data 
+
             // Printing loaded data
             jukeboxinstance.printJukeBox();
             // Saving instance data
@@ -137,11 +139,13 @@ namespace JukeBox01
                     {
                         newJukeboxName = newJukeboxName.Replace("jukeboxname", "");
                         input = "changejukeboxname";
+                        jukeboxinstance.changeJukeboxName(newJukeboxName);
                     }
                     if (input.Contains("author"))
                     {
                         newAuthorName = newAuthorName.Replace("jukeboxauthor", "");
                         input = "changejukeboxauthor";
+                        jukeboxinstance.changeAuthorName(newAuthorName);
                     }
                     if (newJukeboxName == "" || newAuthorName == "")
                     {
