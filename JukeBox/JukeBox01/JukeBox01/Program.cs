@@ -47,6 +47,12 @@ namespace JukeBox01
         // PRINT COMMANDS
 
         // Printing results in g
+        static void printSuccess(string text)
+        {
+            Console.ForegroundColor = Constants.SUCCESSCOLOR;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
         static void printResult(string text)
         {
             Console.ForegroundColor = Constants.RESULTCOLOR;
@@ -81,10 +87,12 @@ namespace JukeBox01
         {
             // Testing XML Perzistance
 
-            // Loading saved data from last instance
-            JukeBox jukeboxinstance = importFromXml(Constants.LOCALPATH + Constants.DATAFOLDER, Constants.DATAFILENAME);
+            string instanceFileName = Constants.DATAFILENAME;
+            string instanceFilePath = Constants.LOCALPATH + Constants.DATAFOLDER;
 
-            bool exit = false;
+            // Loading saved data from last instance
+            JukeBox jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
+
 
 
 
@@ -169,6 +177,7 @@ namespace JukeBox01
             //}
 
 
+            bool exit = false;
             do
             {
                 // Console.Clear();
@@ -254,6 +263,7 @@ namespace JukeBox01
                                 break;
                         }
                         break;
+                        
                     ////////////////////////////////////////////////////////////
                     // IMPORT
 
@@ -290,11 +300,26 @@ namespace JukeBox01
             } while (!exit);
 
             // Printing loaded data
-            jukeboxinstance.printJukeBox();
+            // jukeboxinstance.printJukeBox();
             // Saving instance data
-
-            Console.WriteLine("Saving data!");
-            exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAFOLDER, Constants.DATAFILENAME);
+            exit = false;
+            do
+            {
+                Console.WriteLine("Do you want to save? Y/N");
+                char key = Console.ReadKey().KeyChar;
+                if (key == 'y' || key == 'Y')
+                {
+                    Console.WriteLine("\nSaving data!");
+                    exportToXml(jukeboxinstance, instanceFilePath, instanceFileName);
+                    printSuccess("\nData saved! Legit!");
+                    exit = true;
+                }
+                else if (key == 'n' || key == 'N')
+                {
+                    printAlert("\nExiting without saving!");
+                    exit = true;
+                }
+            } while (exit != true);
             Console.WriteLine("Press any key to exit the JukeBox.");
 
             //// Testing data imput
