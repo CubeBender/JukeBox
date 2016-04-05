@@ -97,9 +97,9 @@ namespace JukeBox01
 
 
             string help = "You need help bro..."
-                    + "\r\n1. print jukebox <all, author, name> or <-all, -author, -name>"
-                    + "\r\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
-                    + "\r\n3. exit or quit";
+                    + "\n1. print jukebox <all, author, name> or <-all, -author, -name>"
+                    + "\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
+                    + "\n3. exit or quit";
             
             //while (!isValid)
             //{
@@ -183,7 +183,7 @@ namespace JukeBox01
                 // Console.Clear();
                 Console.WriteLine("Command:");
                 string[] input = (Console.ReadLine().Split(' '));
-                
+
                 switch (input[0].ToLowerInvariant())
                 {
                     ////////////////////////////////////////////////////////////
@@ -209,6 +209,14 @@ namespace JukeBox01
                                 jukeboxinstance.printJukeBox(Constants.RESULTCOLOR);
                                 break;
 
+                            case "name":
+                                printResult("Jukebox name: "+jukeboxinstance.getJukeboxName());
+                                break;
+
+                            case "author":
+                                printResult("Jukebox author: " + jukeboxinstance.getAuthorName());
+                                break;
+
                             case "album":
                                 if (input.Length >= 3)
                                 {
@@ -223,7 +231,7 @@ namespace JukeBox01
                                     // Use the Joint argument to find the album
                                     Album album = jukeboxinstance.searchAlbumByName(expression);
                                     // If no album was found, we print alert
-                                    if ( album != null)
+                                    if (album != null)
                                     {
                                         album.printAlbum(Constants.RESULTCOLOR);
                                         break;
@@ -263,7 +271,47 @@ namespace JukeBox01
                                 break;
                         }
                         break;
-                        
+
+                    ////////////////////////////////////////////////////////////
+                    // CHANGE
+                    case "change":
+                        if (input.Length != 4 && input.Length < 4)
+                        {
+                            printAlert("You must specify what you want to change and a new name!");
+                            break;
+                        }
+                        if (input.Length != 4 && input.Length > 4)
+                        {
+                            printAlert("Too many arguments!");
+                            break;
+                        }
+                        else if (input[3] == "") { input[3] = "Unknown"; }
+                        switch (input[1].ToLowerInvariant())
+                        {
+                            case "jukebox":
+                                switch (input[2].ToLowerInvariant())
+                                {
+                                    case "name":
+                                        string oldJukeboxName = jukeboxinstance.getJukeboxName();
+                                        string newJukeboxName = input[3];
+                                        jukeboxinstance.changeJukeboxName(newJukeboxName);
+                                        printSuccess("Jukebox \"" + oldJukeboxName + "\" has been renamed as \"" + newJukeboxName + "\".");
+                                        break;
+
+                                    case "author":
+                                        string oldAuthorName = jukeboxinstance.getAuthorName();
+                                        string newAuthorName = input[3];
+                                        jukeboxinstance.changeAuthorName(newAuthorName);
+                                        printSuccess("Author \"" + oldAuthorName + "\" has been changed to \"" + newAuthorName + "\".");
+                                        break;
+                                }
+                                break;
+
+                            default:
+                                printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                break;
+                        }
+                        break;
                     ////////////////////////////////////////////////////////////
                     // IMPORT
 
