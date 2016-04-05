@@ -44,6 +44,31 @@ namespace JukeBox01
         }
 
         ////////////////////////////////////////////////////////////
+        // PRINT COMMANDS
+
+        // Printing results in g
+        static void printResult(string text)
+        {
+            Console.ForegroundColor = Constants.RESULTCOLOR;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        static void printAlert(string text)
+        {
+            Console.ForegroundColor = Constants.ALERTCOLOR;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        static void printComment(string text)
+        {
+            Console.ForegroundColor = Constants.COMMENTCOLOR;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        ////////////////////////////////////////////////////////////
         // INSTANCE INITIALIZATION
 
         // TO DO ?
@@ -61,40 +86,216 @@ namespace JukeBox01
 
             bool exit = false;
 
+
+
+            string help = "You need help bro..."
+                    + "\r\n1. print jukebox <all, author, name> or <-all, -author, -name>"
+                    + "\r\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
+                    + "\r\n3. exit or quit";
+            
+            //while (!isValid)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Green;
+            //    if (input == "?" || input == "jukebox") input = "help";
+            //    if (input.Contains("export"))
+            //    {
+            //        filename = input.Replace("export", "");
+            //        filename = filename.Replace("jukebox", "");
+            //        if (filename == "") { filename = Constants.EXPORTFILENAME; }
+            //        input = "export";
+            //    }
+
+            //    if (input.Contains("change"))
+            //    {
+            //        string tmp = input.Replace("change", "");
+            //        newJukeboxName = tmp;
+            //        newAuthorName = tmp;
+            //        if (input.Contains("name"))
+            //        {
+            //            newJukeboxName = newJukeboxName.Replace("jukeboxname", "");
+            //            input = "changejukeboxname";
+            //        }
+            //        if (input.Contains("author"))
+            //        {
+            //            newAuthorName = newAuthorName.Replace("jukeboxauthor", "");
+            //            input = "changejukeboxauthor";
+            //        }
+            //        if (newJukeboxName == "" || newAuthorName == "")
+            //        {
+            //            newJukeboxName = jukeboxinstance.getJukeboxName();
+            //            newAuthorName = jukeboxinstance.getAuthorName();
+            //        }
+
+
+            //    }
+
+
+            //    switch (input.ToLowerInvariant())
+            //    {
+            //        case "printjukebox":
+            //        case "printjukeboxall":
+            //        case "printjukebox-all":
+            //            Console.WriteLine("Jukebox:\r\n");
+            //            jukeboxinstance.printJukeBox();
+            //            break;
+
+            //        case "printjukeboxname":
+            //        case "printjukebox-name":
+            //            Console.WriteLine("Jukebox name: " + jukeboxinstance.getJukeboxName());
+            //            break;
+
+            //        case "printjukeboxauthor":
+            //        case "printjukebox-author":
+            //            Console.WriteLine("Jukebox author: " + jukeboxinstance.getAuthorName());
+            //            break;
+
+            //        case "changejukeboxname":
+            //        case "changejukebox-name":
+            //            Console.WriteLine("Jukebox name " + jukeboxinstance.getJukeboxName()
+            //                + " has been changed to " + newJukeboxName + ".");
+            //            break;
+
+            //        case "changejukeboxauthor":
+            //        case "changejukebox-author":
+            //            Console.WriteLine("Jukebox author " + jukeboxinstance.getAuthorName()
+            //                + " has been changed to " + newAuthorName + ".");
+            //            break;
+
+            //        case "export":
+            //            Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
+            //            exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.EXPORTPATH, filename);
+            //            break;
+            //    }
+            //}
+
+
             do
             {
                 // Console.Clear();
-                Console.WriteLine("Press \"A\"");
-                char imput = Console.ReadKey().KeyChar;
-
-
-                switch (imput)
+                Console.WriteLine("Command:");
+                string[] input = (Console.ReadLine().Split(' '));
+                
+                switch (input[0].ToLowerInvariant())
                 {
-                    case 'a':
-                    case 'A':
-                        Console.WriteLine(" is a VALID imput!");
+                    ////////////////////////////////////////////////////////////
+                    // HELP
+                    case "help":
+                    case "?":
+                        printComment(help);
                         break;
-                    case 'x':
-                    case 'X':
-                        Console.WriteLine(" is a deadly spell! You have escaped!");
+
+                    ////////////////////////////////////////////////////////////
+                    // PRINT
+                    case "print":
+                        if (input.Length < 2)
+                        {
+                            printAlert("You must specify what you want to print!");
+                            break;
+                        }
+
+                        switch (input[1].ToLowerInvariant())
+                        {
+                            case "all":
+                            case "jukebox":
+                                jukeboxinstance.printJukeBox(Constants.RESULTCOLOR);
+                                break;
+
+                            case "album":
+                                if (input.Length < 3)
+                                {
+                                    // Join the rest of arguments into string
+                                    string expression = input[2];
+                                    int i = 3;
+                                    while (i < input.Length)
+                                    {
+                                        expression = expression + " " + input[i];
+                                        i++;
+                                    }
+                                    // Use the Joint argument to find the album
+                                    Album album = jukeboxinstance.searchAlbumByName(expression);
+                                    // If no album was found, we print alert
+                                    if ( album != null)
+                                    {
+                                        album.printAlbum(Constants.RESULTCOLOR);
+                                        break;
+                                    }
+                                    else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                }
+                                // If no argument was given, print alert
+                                else { printAlert("You must specify the name of the album!"); }
+                                break;
+
+                            case "song":
+                                if (input.Length < 3)
+                                {
+                                    // Join the rest of arguments into string
+                                    string expression = input[2];
+                                    int i = 3;
+                                    while (i < input.Length)
+                                    {
+                                        expression = expression + " " + input[i];
+                                        i++;
+                                    }
+                                    // Use the Joint argument to find the song
+                                    Song song = jukeboxinstance.searchSongByName(expression);
+                                    if (song != null)
+                                    {
+                                        song.printSongAll(Constants.RESULTCOLOR);
+                                        break;
+                                    }
+                                    else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                }
+                                // If no argument was given, print alert
+                                else { printAlert("You must specify the name of the song!"); }
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+                    ////////////////////////////////////////////////////////////
+                    // IMPORT
+
+                    ////////////////////////////////////////////////////////////
+                    // EXPORT
+
+                    ////////////////////////////////////////////////////////////
+                    // JUKEBOX
+
+                    ////////////////////////////////////////////////////////////
+                    // ALBUM
+
+                    ////////////////////////////////////////////////////////////
+                    // SONG
+
+                    ////////////////////////////////////////////////////////////
+                    // TERMINATION
+                    case "exit":
+                    case "quit":
+                    case "close":
+                    case "terminate":
                         exit = true;
                         break;
-                    case 'o':
-                    case 'O':
-                        Console.WriteLine(" - ERROR: TARGETING SYSTEM OFFLINE!");
-                        break;
-                    default:
-                        Console.WriteLine(" is NOT a VALID imput!");
-                        break;
 
+                    ////////////////////////////////////////////////////////////
+                    // DEFAULT
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Cannot find command \"{0}\". Type \"help\" or \"?\" for list of valid commands.", input[0]);
+                        break;
                 }
+
+                Console.ResetColor();
 
             } while (!exit);
 
             // Printing loaded data
             jukeboxinstance.printJukeBox();
             // Saving instance data
+
+            Console.WriteLine("Saving data!");
             exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.DATAFOLDER, Constants.DATAFILENAME);
+            Console.WriteLine("Press any key to exit the JukeBox.");
 
             //// Testing data imput
             //Song song1 = new Song("Jsi moje mama", 183, "Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!");

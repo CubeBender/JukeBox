@@ -30,7 +30,7 @@ namespace JukeBox01
         {
             this.name = jukebox.name;
             this.author = jukebox.author;
-            this.albums = new List<Album> (jukebox.albums);
+            this.albums = new List<Album>(jukebox.albums);
         }
         // Constructor with parameters
         public JukeBox(string name = "no name", string author = "unknown author")
@@ -93,15 +93,56 @@ namespace JukeBox01
         public void deleteAllSongs() { albums.Clear(); }
 
         ////////////////////////////////////////////////////////////
+        // SEARCH METHODS
+
+        public Album searchAlbumByName(string name)
+        {
+            foreach (Album album in albums)
+            {
+                if (album.name == name)
+                {
+                    return album;
+                }
+            }
+            return null;
+        }
+
+        public Song searchSongByName(string name)
+        {
+            foreach (Album album in albums)
+            {
+                foreach (Song song in album.songs)
+                {
+                    if (song.name == name)
+                    {
+                        return song;
+                    }
+                }
+            }
+            return null;
+        }
+
+        ////////////////////////////////////////////////////////////
         // PRINT METHODS
 
         public void printJukeBox()
         {
             Console.WriteLine("JukeBox name: {0}, author: {1}", this.name, this.author);
-            foreach(Album album in albums)
+            foreach (Album album in albums)
             {
                 album.printAlbum();
             }
+        }
+
+        public void printJukeBox(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("JukeBox name: {0}, author: {1}", this.name, this.author);
+            foreach (Album album in albums)
+            {
+                album.printAlbum();
+            }
+            Console.ResetColor();
         }
 
         ////////////////////////////////////////////////////////////

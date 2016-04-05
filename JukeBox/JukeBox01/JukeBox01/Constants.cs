@@ -34,5 +34,14 @@ namespace JukeBox01
 
         public const string EXPORTFILENAME = "export";
 
+        ////////////////////////////////////////////////////////////
+        // CONSOLE COLOR
+
+        public const ConsoleColor RESULTCOLOR = ConsoleColor.Green;
+
+        public const ConsoleColor ALERTCOLOR = ConsoleColor.Red;
+
+        public const ConsoleColor COMMENTCOLOR = ConsoleColor.DarkGray;
+
     }
 }

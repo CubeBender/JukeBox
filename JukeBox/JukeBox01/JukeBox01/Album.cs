@@ -98,15 +98,40 @@ namespace JukeBox01
         public void deleteAllSongs() { songs.Clear(); }
 
         ////////////////////////////////////////////////////////////
+        // SEARCH METHODS
+
+        public Song searchByName(string name)
+        {
+            foreach (Song song in songs)
+            {
+                if (song.name == name)
+                {
+                    return song;
+                }
+            }
+            return null;
+        }
+
+        ////////////////////////////////////////////////////////////
         // PRINT METHODS
 
         public void printAlbum()
         {
             Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
-            foreach(Song song in songs)
+            foreach (Song song in songs)
             {
                 song.printSong();
             }
+        }
+        public void printAlbum(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
+            foreach (Song song in songs)
+            {
+                song.printSong();
+            }
+            Console.ResetColor();
         }
 
         ////////////////////////////////////////////////////////////

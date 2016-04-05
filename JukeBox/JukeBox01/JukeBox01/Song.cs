@@ -52,11 +52,24 @@ namespace JukeBox01
         {
             Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
         }
+        public void printSong(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
+            Console.ResetColor();
+        }
         public void printSongAll()
         {
             Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
             Console.WriteLine(this.text);
         }
-   
+        public void printSongAll(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("Song name: {0}, length: {1}", this.name, this.length);
+            Console.WriteLine(this.text);
+            Console.ResetColor();
+        }
+
     }
 }
