@@ -201,7 +201,7 @@ namespace JukeBox01
                                 break;
 
                             case "album":
-                                if (input.Length < 3)
+                                if (input.Length >= 3)
                                 {
                                     // Join the rest of arguments into string
                                     string expression = input[2];
@@ -226,7 +226,7 @@ namespace JukeBox01
                                 break;
 
                             case "song":
-                                if (input.Length < 3)
+                                if (input.Length >= 3)
                                 {
                                     // Join the rest of arguments into string
                                     string expression = input[2];
@@ -250,6 +250,7 @@ namespace JukeBox01
                                 break;
 
                             default:
+                                printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                 break;
                         }
                         break;
@@ -280,8 +281,7 @@ namespace JukeBox01
                     ////////////////////////////////////////////////////////////
                     // DEFAULT
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Cannot find command \"{0}\". Type \"help\" or \"?\" for list of valid commands.", input[0]);
+                        printAlert("Cannot find command \"" + input[0] + "\". Type \"help\" or \"?\" for list of valid commands.");
                         break;
                 }
 
