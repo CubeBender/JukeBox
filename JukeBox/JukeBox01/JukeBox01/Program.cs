@@ -98,9 +98,9 @@ namespace JukeBox01
 
 
             string help = "You need help bro..."
-                    + "\r\n1. print jukebox <all, author, name> or <-all, -author, -name>"
-                    + "\r\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
-                    + "\r\n3. exit or quit";
+                    + "\n1. print jukebox <all, author, name> or <-all, -author, -name>"
+                    + "\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
+                    + "\n3. exit or quit";
             
             //while (!isValid)
             //{
@@ -212,8 +212,6 @@ namespace JukeBox01
                                 jukeboxinstance.printJukeBox(Constants.RESULTCOLOR);
                                 break;
 
-                            ////////////////////////////////////////////////////////////
-                            // PRINT ALBUM
                             case "album":
                                 if(input.Length < 3)
                                 {
@@ -227,30 +225,30 @@ namespace JukeBox01
                                     case "name":
                                         if (input.Length >= 4)
                                         {
-                                            // Join the rest of arguments into string
+                                    // Join the rest of arguments into string
                                             string expression = input[3];
                                             int i = 4;
-                                            while (i < input.Length)
-                                            {
-                                                expression = expression + " " + input[i];
-                                                i++;
-                                            }
+                                    while (i < input.Length)
+                                    {
+                                        expression = expression + " " + input[i];
+                                        i++;
+                                    }
                                             // Use the Joint argument to find the album(s)
                                             List<Album> albumList = jukeboxinstance.searchAlbumByName(expression);
-                                            // If no album was found, we print alert
+                                    // If no album was found, we print alert
                                             if (albumList.Count > 0)
-                                            {
+                                    {
                                                 foreach (Album album in albumList)
                                                 {
-                                                    album.printAlbum(Constants.RESULTCOLOR);
+                                        album.printAlbum(Constants.RESULTCOLOR);
                                                 }
-                                                break;
-                                            }
-                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
-                                        }
-                                        // If no argument was given, print alert
-                                        else { printAlert("You must specify the name of the album!"); }
                                         break;
+                                    }
+                                    else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                }
+                                // If no argument was given, print alert
+                                else { printAlert("You must specify the name of the album!"); }
+                                break;
 
                                     ////////////////////////////////////////////////////////////
                                     // PRINT ALBUM ARTIST
@@ -324,30 +322,30 @@ namespace JukeBox01
                                     // PRINT SONG NAME
                                     case "name":
                                         if (input.Length >= 4)
-                                        {
-                                            // Join the rest of arguments into string
+                                {
+                                    // Join the rest of arguments into string
                                             string expression = input[3];
                                             int i = 4;
-                                            while (i < input.Length)
-                                            {
-                                                expression = expression + " " + input[i];
-                                                i++;
-                                            }
+                                    while (i < input.Length)
+                                    {
+                                        expression = expression + " " + input[i];
+                                        i++;
+                                    }
                                             // Use the Joint argument to find the song(s)
                                             List<Song> songList = jukeboxinstance.searchSongByName(expression);
                                             if (songList.Count > 0)
                                             {
                                                 foreach (Song song in songList)
-                                                {
+                                    {
                                                     song.printSong(Constants.RESULTCOLOR);
                                                 }
-                                                break;
-                                            }
-                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
-                                        }
-                                        // If no argument was given, print alert
-                                        else { printAlert("You must specify the name of the song!"); }
                                         break;
+                                    }
+                                    else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                }
+                                // If no argument was given, print alert
+                                else { printAlert("You must specify the name of the song!"); }
+                                break;
 
                                     ////////////////////////////////////////////////////////////
                                     // PRINT SONG ARTIST
@@ -436,6 +434,46 @@ namespace JukeBox01
                         }
                         break;
                         
+                    ////////////////////////////////////////////////////////////
+                    // CHANGE
+                    case "change":
+                        if (input.Length != 4 && input.Length < 4)
+                        {
+                            printAlert("You must specify what you want to change and a new name!");
+                            break;
+                        }
+                        if (input.Length != 4 && input.Length > 4)
+                        {
+                            printAlert("Too many arguments!");
+                            break;
+                        }
+                        else if (input[3] == "") { input[3] = "Unknown"; }
+                        switch (input[1].ToLowerInvariant())
+                        {
+                            case "jukebox":
+                                switch (input[2].ToLowerInvariant())
+                                {
+                                    case "name":
+                                        string oldJukeboxName = jukeboxinstance.getJukeboxName();
+                                        string newJukeboxName = input[3];
+                                        jukeboxinstance.changeJukeboxName(newJukeboxName);
+                                        printSuccess("Jukebox \"" + oldJukeboxName + "\" has been renamed as \"" + newJukeboxName + "\".");
+                                        break;
+
+                                    case "author":
+                                        string oldAuthorName = jukeboxinstance.getAuthorName();
+                                        string newAuthorName = input[3];
+                                        jukeboxinstance.changeAuthorName(newAuthorName);
+                                        printSuccess("Author \"" + oldAuthorName + "\" has been changed to \"" + newAuthorName + "\".");
+                                        break;
+                                }
+                                break;
+
+                            default:
+                                printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                break;
+                        }
+                        break;
                     ////////////////////////////////////////////////////////////
                     // IMPORT
 
