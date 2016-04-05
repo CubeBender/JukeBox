@@ -37,7 +37,9 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // CONSOLE COLOR
 
-        public const ConsoleColor RESULTCOLOR = ConsoleColor.Green;
+        public const ConsoleColor SUCCESSCOLOR = ConsoleColor.Green;
+
+        public const ConsoleColor RESULTCOLOR = ConsoleColor.White;
 
         public const ConsoleColor ALERTCOLOR = ConsoleColor.Red;
 
