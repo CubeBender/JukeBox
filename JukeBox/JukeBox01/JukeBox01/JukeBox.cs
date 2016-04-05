@@ -95,31 +95,108 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // SEARCH METHODS
 
-        public Album searchAlbumByName(string name)
+        // Search albums by name
+        public List<Album> searchAlbumByName(string name)
         {
+            List<Album> resultList = new List<Album>();
             foreach (Album album in albums)
             {
                 if (album.name == name)
                 {
-                    return album;
+                    resultList.Add(album);
                 }
             }
-            return null;
+            return resultList;
         }
-
-        public Song searchSongByName(string name)
+        // Search songs by name
+        public List<Song> searchSongByName(string name)
         {
+            List<Song> resultList = new List<Song>();
             foreach (Album album in albums)
             {
                 foreach (Song song in album.songs)
                 {
                     if (song.name == name)
                     {
-                        return song;
+                        resultList.Add(song);
                     }
                 }
             }
-            return null;
+            return resultList;
+        }
+        // Search albums by artist
+        public List<Album> searchAlbumByArtist(string artist)
+        {
+            List<Album> resultList = new List<Album>();
+            foreach (Album album in albums)
+            {
+                if (album.artist == artist)
+                {
+                    resultList.Add(album);
+                }
+            }
+            return resultList;
+        }
+        // Seach songs by artist
+        public List<Song> searchSongByArtist(string artist)
+        {
+            List<Song> resultList = new List<Song>();
+            foreach (Album album in albums)
+            {
+                if (album.artist == artist)
+                {
+                    foreach (Song song in album.songs)
+                    {
+                        resultList.Add(song);
+                    }
+                }
+            }
+            return resultList;
+        }
+        // Search albums by year
+        public List<Album> searchAlbumByYear(string year)
+        {
+            List<Album> resultList = new List<Album>();
+            foreach (Album album in albums)
+            {
+                if (album.year.ToString() == year)
+                {
+                    resultList.Add(album);
+                }
+            }
+            return resultList;
+        }
+        // Search song by year
+        public List<Song> searchSongByYear(string year)
+        {
+            List<Song> resultList = new List<Song>();
+            foreach (Album album in albums)
+            {
+                if (album.year.ToString() == year)
+                {
+                    foreach (Song song in album.songs)
+                    {
+                        resultList.Add(song);
+                    }
+                }
+            }
+            return resultList;
+        }
+        // Search song by length
+        public List<Song> searchSongByLength(string length)
+        {
+            List<Song> resultList = new List<Song>();
+            foreach (Album album in albums)
+            {
+                foreach (Song song in album.songs)
+                {
+                    if (song.length.ToString() == length)
+                    {
+                        resultList.Add(song);
+                    }
+                }
+            }
+            return resultList;
         }
 
         ////////////////////////////////////////////////////////////
@@ -130,7 +207,7 @@ namespace JukeBox01
             Console.WriteLine("JukeBox name: {0}, author: {1}", this.name, this.author);
             foreach (Album album in albums)
             {
-                album.printAlbum();
+                album.printAlbumAll();
             }
         }
 
@@ -140,7 +217,7 @@ namespace JukeBox01
             Console.WriteLine("JukeBox name: {0}, author: {1}", this.name, this.author);
             foreach (Album album in albums)
             {
-                album.printAlbum();
+                album.printAlbumAll();
             }
             Console.ResetColor();
         }
@@ -149,8 +226,6 @@ namespace JukeBox01
         // UTILITY METHODS
 
         // Utility functions of JukeBox
-        // getNumAlbums - get the total number of albums in JukeBox
-
         // getNumAlbums - get the total number of albums in JukeBox
         public int getNumAlbums() { return albums.Count; }
 

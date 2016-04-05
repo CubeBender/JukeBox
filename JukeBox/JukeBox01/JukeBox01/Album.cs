@@ -93,23 +93,24 @@ namespace JukeBox01
         // deleteSong - delete a song at certain position
         public void deleteSong(int position) { songs.RemoveAt(position); }
         // deleteSong - delete a specific song
-        public void deleteSong(Song song) { songs.Remove(song); }
+        public bool deleteSong(Song song) { return songs.Remove(song); }
         // deleteAllSong - delete all songs in album
         public void deleteAllSongs() { songs.Clear(); }
 
         ////////////////////////////////////////////////////////////
         // SEARCH METHODS
 
-        public Song searchByName(string name)
+        public List<Song> searchByName(string name)
         {
+            List<Song> resultList = new List<Song>();
             foreach (Song song in songs)
             {
                 if (song.name == name)
                 {
-                    return song;
+                    resultList.Add(song);
                 }
             }
-            return null;
+            return resultList;
         }
 
         ////////////////////////////////////////////////////////////
@@ -118,12 +119,22 @@ namespace JukeBox01
         public void printAlbum()
         {
             Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
+        }
+        public void printAlbum(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
+            Console.ResetColor();
+        }
+        public void printAlbumAll()
+        {
+            Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
             foreach (Song song in songs)
             {
                 song.printSong();
             }
         }
-        public void printAlbum(ConsoleColor color)
+        public void printAlbumAll(ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
