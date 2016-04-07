@@ -122,10 +122,12 @@ namespace JukeBox01
             
 
             string help = "You need help bro..."
-                    + "\n1. print jukebox <all>, print author, print name"
+                    + "\n1. print jukebox, print jukebox all"
+                    + "\n   a) print name"
+                    + "\n   b) print author"
                     + "\n2. change jukebox"
-                    + "\n   a.) change jukebox name <new name>"
-                    + "\n   b.) change jukebox author <new author>"
+                    + "\n   a) change jukebox name <new name>"
+                    + "\n   b) change jukebox author <new author>"
                     + "\n3. export <filename>"
                     + "\n4. close, exit, terminate, quit";
          
