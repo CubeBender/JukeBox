@@ -115,9 +115,8 @@ namespace JukeBox01
 
             // Making tmp file for exiting without opened file but want to save file.
             string tmpFile = "tmp_" + DateTime.Now.ToString("G");
-            tmpFile = tmpFile.Replace(".", "");
             tmpFile = tmpFile.Replace(":", "");
-            tmpFile = tmpFile.Replace(" ", "");
+            tmpFile = tmpFile.Replace(" ", "_");
 
             // Setting default instance data file and path
             string instanceFileName = Constants.DATAFILENAME;

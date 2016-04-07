@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <JukeBox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <jukeboxName>TomiJukebox</jukeboxName>
-  <jukeboxAuthor>DavidPocar</jukeboxAuthor>
+  <jukeboxAuthor>CubeBender</jukeboxAuthor>
   <jukeboxAlbums>
     <albumName>Mama</albumName>
     <albumArtist>Lunetic</albumArtist>
@@ -31,6 +31,7 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Fragile</albumName>
     <albumArtist>Yes</albumArtist>
@@ -60,6 +61,7 @@
       <songText>xxx</songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Greatest Hits</albumName>
     <albumArtist>Blink-182</albumArtist>
@@ -86,6 +88,7 @@
       <songText>xxx</songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Veselé zpívánky</albumName>
     <albumArtist>Maxim Turbulenc</albumArtist>
@@ -97,6 +100,7 @@
       <songText>ne</songText>
     </albumSongs>
   </jukeboxAlbums>
+  
   <jukeboxAlbums>
     <albumName>Static Chronicle</albumName>
     <albumArtist>Backdraft Smiths</albumArtist>
@@ -128,4 +132,5 @@
       <songText>bbb</songText>
     </albumSongs>
   </jukeboxAlbums>
+  
 </JukeBox>
