@@ -153,9 +153,9 @@ namespace JukeBox01
                     + "\n   a) change jukebox name <new name>"
                     + "\n   b) change jukebox author <new author>"
                     + "\n3. work with files"
-                    + "\n   a) import <filename>, load <filename>"
-                    + "\n   b) export <filename>, saveas <filename>"
-                    + "\n   c) open <filename>, save"
+                    + "\n   a) open <filename>, save"
+                    + "\n   b) import <filename>, load <filename>"
+                    + "\n   c) export <filename>, saveas <filename>"
                     + "\n4. close, exit, terminate, quit"
                     + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving."
                     + "\n\nNOTE: Searchwords are case sensitive at the moment.";
