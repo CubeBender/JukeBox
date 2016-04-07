@@ -101,7 +101,7 @@ namespace JukeBox01
             List<Album> resultList = new List<Album>();
             foreach (Album album in albums)
             {
-                if (album.name == name)
+                if (album.name.ToLowerInvariant() == name.ToLowerInvariant())
                 {
                     resultList.Add(album);
                 }
@@ -116,7 +116,7 @@ namespace JukeBox01
             {
                 foreach (Song song in album.songs)
                 {
-                    if (song.name == name)
+                    if (song.name.ToLowerInvariant() == name.ToLowerInvariant())
                     {
                         resultList.Add(song);
                     }
@@ -130,7 +130,7 @@ namespace JukeBox01
             List<Album> resultList = new List<Album>();
             foreach (Album album in albums)
             {
-                if (album.artist == artist)
+                if (album.artist.ToLowerInvariant() == artist.ToLowerInvariant())
                 {
                     resultList.Add(album);
                 }
@@ -143,7 +143,7 @@ namespace JukeBox01
             List<Song> resultList = new List<Song>();
             foreach (Album album in albums)
             {
-                if (album.artist == artist)
+                if (album.artist.ToLowerInvariant() == artist.ToLowerInvariant())
                 {
                     foreach (Song song in album.songs)
                     {
@@ -207,7 +207,7 @@ namespace JukeBox01
             Console.WriteLine("JukeBox name: {0}, author: {1}", this.name, this.author);
             foreach (Album album in albums)
             {
-                album.printAlbumAll();
+                album.printAlbumContent();
             }
         }
 
@@ -217,7 +217,7 @@ namespace JukeBox01
             Console.WriteLine("JukeBox name: {0}, author: {1}", this.name, this.author);
             foreach (Album album in albums)
             {
-                album.printAlbumAll();
+                album.printAlbumContent();
             }
             Console.ResetColor();
         }

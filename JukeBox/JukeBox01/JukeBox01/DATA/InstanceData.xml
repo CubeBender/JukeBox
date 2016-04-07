@@ -10,17 +10,32 @@
     <albumSongs>
       <songName>Jsi moje mama</songName>
       <songLength>183</songLength>
-      <songText>Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!</songText>
+      <songText>
+        Jsi moje mama, moje mama,
+        kterou ja mam nadevse rad.
+        Jsi jak kouzelna vila,
+        co mi dava chut se smat!
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>Jsi moje tata</songName>
       <songLength>194</songLength>
-      <songText>Jsi moje tata, moje tata, kterou ja mam nadevse rad. Jsi jak kouzelny vil, co mi dava chut se smat!</songText>
+      <songText>
+        Jsi moje tata, moje tata,
+        kterou ja mam nadevse rad.
+        Jsi jak kouzelny vil,
+        co mi dava chut se smat!
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>Jsi moje sestra</songName>
       <songLength>162</songLength>
-      <songText>Jsi moje sestra, moje sestra, kterou ja mam nadevse rad. Jsi jak kouzelna dcera vily, co mi dava chut se smat</songText>
+      <songText>
+        Jsi moje sestra, moje sestra,
+        kterou ja mam nadevse rad.
+        Jsi jak kouzelna dcera vily,
+        co mi dava chut se smat!
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>Jsi moje mama</songName>
@@ -100,7 +115,7 @@
       <songText>ne</songText>
     </albumSongs>
   </jukeboxAlbums>
-  
+
   <jukeboxAlbums>
     <albumName>Static Chronicle</albumName>
     <albumArtist>Backdraft Smiths</albumArtist>
@@ -130,6 +145,356 @@
       <songName>I Wish</songName>
       <songLength>312</songLength>
       <songText>bbb</songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>My World 2.0</albumName>
+    <albumArtist>Justin Bieber</albumArtist>
+    <albumGenre>Pop</albumGenre>
+    <albumYear>2010</albumYear>
+    <albumSongs>
+      <songName>Baby</songName>
+      <songLength>214</songLength>
+      <songText>
+        Baby, baby, baby oooh
+        Like baby, baby, baby nooo
+        Like baby, baby, baby oooh
+        I thought you'd always be mine (mine)
+
+        Baby, baby, baby oooh
+        Like baby, baby, baby nooo
+        Like baby, baby, baby oooh
+        I thought you'd always be mine (mine)
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Somebody to Love</songName>
+      <songLength>220</songLength>
+      <songText>
+        I need somebody to love,
+        I don't need too much, just somebody to love,
+        Somebody to love.
+        I don't need nothing else,
+        I promise girl I swear,
+        I just need somebody to love.
+        I need somebody, I need somebody,
+        I need somebody, I need somebody
+        Somebody to love.
+        I need somebody, I need somebody,
+        I need somebody, I need somebody
+        I just need somebody to love.
+
+        I need somebody, I need somebody,
+        I need somebody, I need somebody
+        I need somebody to love.
+        To love, to love.
+        Is she out there? [x3]
+        I just need somebody to love.
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>U Smile</songName>
+      <songLength>216</songLength>
+      <songText>
+        Your lips, my biggest weakness
+        Shouldn't have let you know
+        I'm always gonna do what they say (hey)
+        If you need me
+        I'll come runnin'
+        From a thousand miles away
+        When you smile I smile (oh whoa)
+        You smile, I smile
+        Hey
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Never Let You Go</songName>
+      <songLength>244</songLength>
+      <songText>
+        Let the music blast
+        We gon' do our dance
+        Bring the doubters on
+        They don't matter at all
+        'Cause this life's too long
+        And this love's too strong
+        So baby know for sure
+        That I'll never let you go
+
+        I got my favorite girl
+        Not feelin', no pain, no fear
+        Don't have a care in the world
+        Why would I when you are here?
+        There's a moment I've been chasing
+        And I finally caught it out on this floor.
+        Baby, there's no hesitation, no reservation
+        By taking a chance and more, oh no, because...
+      </songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Under the Mistletoe</albumName>
+    <albumArtist>Justin Bieber</albumArtist>
+    <albumGenre>Pop</albumGenre>
+    <albumYear>2011 </albumYear>
+    <albumSongs>
+      <songName>Mistletoe</songName>
+      <songLength>192</songLength>
+      <songText>
+        With you, shawty with you
+        With you, shawty with you
+        With you under the mistletoe
+
+        With you, shawty with you
+        With you, shawty with you
+        With you, under the mistletoe, under the mistletoe
+
+        Kiss me underneath the mistletoe
+        Show me baby that you love me so-oh-oh
+        Oh, oh, ohhh
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>The Christmas Song (Chestnuts Roasting On An Open Fire) (feat. Usher) (Dirty version) (CubeBender remix)</songName>
+      <songLength>215</songLength>
+      <songText>
+        [Justin Bieber:]
+        Everybody knows a turkey and some mistletoe
+        Help to make the season bright
+        Tiny tots with their eyes all aglow
+        Will find it hard to sleep tonight
+
+        [Usher:]
+        They know that Santa's on his way
+        He's loaded lots of toys and many goodies on his sleigh
+        [Both:]
+        And every mother's child is gonna spy
+        To see if reindeer really know how to fly
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Santa Claus Is Coming To Town</songName>
+      <songLength>216</songLength>
+      <songText>
+        You better watch out!
+        You better not cry
+        You better not pout
+        I'm telling you why
+        Santa Claus is coming to town
+
+        You better watch out!
+        You better not cry
+        You better not pout
+        I'm telling you why
+        Santa Claus is coming to town
+      </songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Believe</albumName>
+    <albumArtist>Justin Bieber</albumArtist>
+    <albumGenre>Pop</albumGenre>
+    <albumYear>2012</albumYear>
+    <albumSongs>
+      <songName>All Around the World</songName>
+      <songLength>244</songLength>
+      <songText>
+        [Ludacris]
+        Yeah
+        Okay
+        Once again
+        (All around the world)
+        The dynamic duo is back at it
+        JB, Luda!
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Boyfriend</songName>
+      <songLength>171</songLength>
+      <songText>
+        If I was your boyfriend, never let you go
+        Keep you on my arm girl, you'd never be alone
+        I can be a gentleman, anything you want
+        If I was your boyfriend, I'd never let you go, I'd never let you go
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>As Long As You Love Me</songName>
+      <songLength>229</songLength>
+      <songText>
+        [1337x]
+        As long as you lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-love me (love me)
+        As long as you lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-love me (love me)
+        As long as you lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-love me (love me)
+        As long as you lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-love me (love me)
+        As long as you lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-love me (love me)
+        As long as you lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-lo-love me (love me)
+      </songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Meet Miley Cyrus</albumName>
+    <albumArtist>Miley Cyrus</albumArtist>
+    <albumGenre>Pop</albumGenre>
+    <albumYear>2007</albumYear>
+    <albumSongs>
+      <songName>We Got the Party</songName>
+      <songLength>216</songLength>
+      <songText>
+        Turn this park into a club
+        the stars and lights and the moon is the vibe from above
+        Skateboards here's our ride so pull on up everyone is waiting for us
+        
+        So anywhere we are
+        Anywhere we go
+        Everybody knows
+        We got the party with us
+        Anywhere we are
+        Anywhere we go
+        Everybody knows
+        We got the party with us
+        Oh oh oh oh oh oh oh oh oh oh oh oh oh
+        We got the party with us
+        Oh oh oh oh oh oh
+        We got the party with us
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Nobody's Perfect</songName>
+      <songLength>200</songLength>
+      <songText>
+        I hate that I let you down
+        And I feel so bad about it
+        I guess karma comes back around
+        'Cause now I'm the one that's hurting, yeah
+        And I hate that I made you think
+        That the trust we have is broken
+        Don't tell me you can't forgive me
+        'Cause nobody's perfect
+        No, no, no, no, no, no, no, nobody's perfect, no
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Make Some Noise</songName>
+      <songLength>267</songLength>
+      <songText>
+        Don't let anyone
+        Tell you that you're not strong enough
+        Don't give up
+        There's nothing wrong with just being yourself
+        That's more than enough
+        So come on and raise your voice
+        speak your mind and make some noise
+        And sing
+        Hey, hey
+        Make some noise
+        Hey, hey, yeah
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Rock Star</songName>
+      <songLength>178</songLength>
+      <songText>
+        I'm unusual
+        Not so typical
+        Way too smart to be waiting around
+        Tai chi practicing
+        Snowboard champion
+        I could fix the flat on your car
+        I might even be a rock star
+      </songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Purpose</albumName>
+    <albumArtist>Justin Bieber</albumArtist>
+    <albumGenre>Pop</albumGenre>
+    <albumYear>2015</albumYear>
+    <albumSongs>
+      <songName>Mark my words</songName>
+      <songLength>134</songLength>
+      <songText>
+        Mark my words
+        Mark my words
+
+        Oh-oh ooh oooooha
+        Ooh-oh ah
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>I'll Show You</songName>
+      <songLength>199</songLength>
+      <songText>
+        I'll show you
+        I'll show you
+        I'll show you
+        I'll show you
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>What Do You Mean?</songName>
+      <songLength>205</songLength>
+      <songText>
+        What do you mean?
+        Ohh ohh ohh
+        When you nod your head yes
+        But you wanna say no
+        What do you mean?
+        Hey yeah
+        When you don't want me to move
+        But you tell me to go
+        What do you mean?
+        Ohh
+        What do you mean?
+        Said we're running out of time
+        What do you mean?
+        Ohh ohh ohh
+        What do you mean?
+        Better make up your mind
+        What do you mean?
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Sorry</songName>
+      <songLength>20</songLength>
+      <songText>
+        [2x]
+        I'm sorry yeah
+        Sorry, oh
+        Sorry
+        Yeah, I know-oh-oh, that I let you down (let you down)
+        Is it too late to say I'm sorry now?
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Love Yourself</songName>
+      <songLength>233</songLength>
+      <songText>
+        My mama don't like you and she likes everyone
+        And I never like to admit that I was wrong
+        And I've been so caught up in my job,
+        Didn't see what's going on
+        But now I know,
+        I'm better sleeping on my own
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Company</songName>
+      <songLength>218</songLength>
+      <songText>
+        It ain't about the complications
+        I'm all about the elevation
+        We can keep it goin' up
+        Oh, don't miss out on us
+        Just wanna have a conversation
+        Forget about the obligations
+        Maybe we can stay in touch
+        Oh that ain't doin' too much
+      </songText>
     </albumSongs>
   </jukeboxAlbums>
   

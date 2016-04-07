@@ -428,6 +428,258 @@ namespace JukeBox01
                         break;
 
                     ////////////////////////////////////////////////////////////
+                    // PLAY
+                    case "play":
+                        if (input.Length < 2)
+                        {
+                            printAlert("You must specify what you want to play!");
+                            break;
+                        }
+
+                        switch (input[1].ToLowerInvariant())
+                        {
+                            ////////////////////////////////////////////////////////////
+                            // PRINT ALL
+                            case "all":
+                            case "jukebox":
+                                // Function, which will play songs in ordre.
+                                printComment("To be implemented..");
+                                break;
+
+                            case "shuffle":
+                                // Function, which will play songs in ordre.
+                                printComment("To be implemented..");
+                                break;
+
+                            case "random":
+                                // Function, which will play a random song.
+                                printComment("To be implemented..");
+                                break;
+
+                            case "album":
+                                if (input.Length < 3)
+                                {
+                                    printAlert("You must specify by what you want to filter!");
+                                    break;
+                                }
+                                switch (input[2].ToLowerInvariant())
+                                {
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT ALBUM NAME
+                                    case "name":
+                                        if (input.Length >= 4)
+                                        {
+                                            // Join the rest of arguments into string
+                                            string expression = input[3];
+                                            int i = 4;
+                                            while (i < input.Length)
+                                            {
+                                                expression = expression + " " + input[i];
+                                                i++;
+                                            }
+                                            // Use the Joint argument to find the album(s)
+                                            List<Album> albumList = jukeboxinstance.searchAlbumByName(expression);
+                                            // If no album was found, we print alert
+                                            if (albumList.Count > 0)
+                                            {
+                                                foreach (Album album in albumList)
+                                                {
+                                                    album.printAlbumAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the name of the album!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT ALBUM ARTIST
+                                    case "artist":
+                                        if (input.Length >= 4)
+                                        {
+                                            // Join the rest of arguments into string
+                                            string expression = input[3];
+                                            int i = 4;
+                                            while (i < input.Length)
+                                            {
+                                                expression = expression + " " + input[i];
+                                                i++;
+                                            }
+                                            // Use the Joint argument to find the album(s)
+                                            List<Album> albumList = jukeboxinstance.searchAlbumByArtist(expression);
+                                            // If no album was found, we print alert
+                                            if (albumList.Count > 0)
+                                            {
+                                                foreach (Album album in albumList)
+                                                {
+                                                    album.printAlbumAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the name of the artist!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT ALBUM YEAR
+                                    case "year":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Album> albumList = jukeboxinstance.searchAlbumByYear(expression);
+                                            // If no album was found, we print alert
+                                            if (albumList.Count > 0)
+                                            {
+                                                foreach (Album album in albumList)
+                                                {
+                                                    album.printAlbumAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the name of the artist!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT ALBUM DEFAULT
+                                    default:
+                                        printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                        break;
+                                }
+                                break;
+                            ////////////////////////////////////////////////////////////
+                            // PRINT SONG
+                            case "song":
+                                if (input.Length < 3)
+                                {
+                                    printAlert("You must specify by what you want to filter!");
+                                    break;
+                                }
+                                switch (input[2].ToLowerInvariant())
+                                {
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT SONG NAME
+                                    case "name":
+                                        if (input.Length >= 4)
+                                        {
+                                            // Join the rest of arguments into string
+                                            string expression = input[3];
+                                            int i = 4;
+                                            while (i < input.Length)
+                                            {
+                                                expression = expression + " " + input[i];
+                                                i++;
+                                            }
+                                            // Use the Joint argument to find the song(s)
+                                            List<Song> songList = jukeboxinstance.searchSongByName(expression);
+                                            if (songList.Count > 0)
+                                            {
+                                                foreach (Song song in songList)
+                                                {
+                                                    song.printSongAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the name of the song!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT SONG ARTIST
+                                    case "artist":
+                                        if (input.Length >= 4)
+                                        {
+                                            // Join the rest of arguments into string
+                                            string expression = input[3];
+                                            int i = 4;
+                                            while (i < input.Length)
+                                            {
+                                                expression = expression + " " + input[i];
+                                                i++;
+                                            }
+                                            // Use the Joint argument to find the song(s)
+                                            List<Song> songList = jukeboxinstance.searchSongByArtist(expression);
+                                            if (songList.Count > 0)
+                                            {
+                                                foreach (Song song in songList)
+                                                {
+                                                    song.printSongAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the artist of the song!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT SONG YEAR
+                                    case "year":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Song> songList = jukeboxinstance.searchSongByYear(expression);
+                                            if (songList.Count > 0)
+                                            {
+                                                foreach (Song song in songList)
+                                                {
+                                                    song.printSongAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the year of the song!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT SONG LENGTH
+                                    case "length":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Song> songList = jukeboxinstance.searchSongByLength(expression);
+                                            if (songList.Count > 0)
+                                            {
+                                                foreach (Song song in songList)
+                                                {
+                                                    song.printSongAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the length of the song!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT SONG DEFAULT
+                                    default:
+                                        printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                        break;
+                                }
+                                break;
+
+                            ////////////////////////////////////////////////////////////
+                            // PRINT DEFAULT
+                            default:
+                                printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                break;
+                        }
+                        break;
+
+                    ////////////////////////////////////////////////////////////
                     // CHANGE
                     case "change":
                         if (input.Length < 4 || input[3] == "")

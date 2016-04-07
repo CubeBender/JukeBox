@@ -115,7 +115,8 @@ namespace JukeBox01
 
         ////////////////////////////////////////////////////////////
         // PRINT METHODS
-
+        
+        // Print only album info
         public void printAlbum()
         {
             Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
@@ -126,12 +127,32 @@ namespace JukeBox01
             Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             Console.ResetColor();
         }
-        public void printAlbumAll()
+        // Print album info and songs' info
+        public void printAlbumContent()
         {
             Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             foreach (Song song in songs)
             {
                 song.printSong();
+            }
+        }
+        public void printAlbumContent(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine("Album name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            foreach (Song song in songs)
+            {
+                song.printSong();
+            }
+            Console.ResetColor();
+        }
+        // Print album info and songs' info and text
+        public void printAlbumAll()
+        {
+            Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            foreach (Song song in songs)
+            {
+                song.printSongAll();
             }
         }
         public void printAlbumAll(ConsoleColor color)
@@ -140,7 +161,7 @@ namespace JukeBox01
             Console.WriteLine("Album name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             foreach (Song song in songs)
             {
-                song.printSong();
+                song.printSongAll();
             }
             Console.ResetColor();
         }
