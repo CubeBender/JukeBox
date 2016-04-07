@@ -119,11 +119,15 @@ namespace JukeBox01
             
             // Loading saved data from default instance
             JukeBox jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
-            
+
+            printComment("Imported file: " + instanceFileName + ".xml" 
+                + "\nJukebox name: " + jukeboxinstance.getJukeboxName()
+                + "\nCreated by: " + jukeboxinstance.getAuthorName());
 
             string help = "Now usable and working commands:"
                     + "\n1. print"
-                    + "\n   a) print jukebox"
+                    + "\n   a) print all"
+                    + "\n       - print jukebox"
                     + "\n       - print jukebox all"
                     + "\n   b) print album"
                     + "\n       - print album name <name>"
@@ -134,11 +138,15 @@ namespace JukeBox01
                     + "\n       - print album artist <artist>"
                     + "\n       - print album year <year>"
                     + "\n       - print album length <length> - in seconds"
-                    + "\n2. change jukebox"
+                    + "\n2. change"
                     + "\n   a) change jukebox name <new name>"
                     + "\n   b) change jukebox author <new author>"
-                    + "\n3. export <filename>, saveas <filename>"
+                    + "\n3. work with files"
+                    + "\n   a) import <filename>, load <filename>"
+                    + "\n   b) export <filename>, saveas <filename>"
+                    + "\n   c) open <filename>, save"
                     + "\n4. close, exit, terminate, quit"
+                    + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving."
                     + "\n\nNOTE: Searchwords are case sensitive at the moment.";
          
 
@@ -146,7 +154,7 @@ namespace JukeBox01
             do
             {
                 // Console.Clear();
-                Console.WriteLine("Command:");
+                Console.WriteLine("\nCommand:");
                 string[] input = (Console.ReadLine().Split(' '));
                 
                 switch (input[0].ToLowerInvariant())
