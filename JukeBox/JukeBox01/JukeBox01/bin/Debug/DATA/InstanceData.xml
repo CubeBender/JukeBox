@@ -37,7 +37,7 @@
     <albumArtist>Yes</albumArtist>
     <albumGenre>Progresive rock</albumGenre>
     <albumYear>1971</albumYear>
-    <albumSongs>497
+    <albumSongs>
       <songName>Roundabout</songName>
       <songLength>497</songLength>
       <songText>
@@ -59,6 +59,77 @@
       <songName>South Side of the Sky</songName>
       <songLength>481</songLength>
       <songText>xxx</songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Greatest Hits</albumName>
+    <albumArtist>Blink-182</albumArtist>
+    <albumGenre>Punk rock</albumGenre>
+    <albumYear>2005</albumYear>
+    <albumSongs>
+      <songName>Dammit</songName>
+      <songLength>147</songLength>
+      <songText>xxxx</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>The Rock Show</songName>
+      <songLength>151</songLength>
+      <songText>xxxxx</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>First Date</songName>
+      <songLength>151</songLength>
+      <songText>xxxxxx</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>All The Small Things</songName>
+      <songLength>151</songLength>
+      <songText>xxx</songText>
+    </albumSongs>
+  </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Veselé zpívánky</albumName>
+    <albumArtist>Maxim Turbulenc</albumArtist>
+    <albumGenre>THC</albumGenre>
+    <albumYear>2000</albumYear>
+    <albumSongs>
+      <songName>Jede Jede Mašinka</songName>
+      <songLength>9999</songLength>
+      <songText>ne</songText>
+    </albumSongs>
+  </jukeboxAlbums>
+  
+  <jukeboxAlbums>
+    <albumName>Static Chronicle</albumName>
+    <albumArtist>Backdraft Smiths</albumArtist>
+    <albumGenre>Rock</albumGenre>
+    <albumYear>2000</albumYear>
+    <albumSongs>
+      <songName>Candle Flames</songName>
+      <songLength>333</songLength>
+      <songText>yyy</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>We'll start our race</songName>
+      <songLength>1</songLength>
+      <songText>xx</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>The Brave</songName>
+      <songLength>219</songLength>
+      <songText>ccc</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Pancrase</songName>
+      <songLength>441</songLength>
+      <songText>vvv</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>I Wish</songName>
+      <songLength>312</songLength>
+      <songText>bbb</songText>
     </albumSongs>
   </jukeboxAlbums>
   
