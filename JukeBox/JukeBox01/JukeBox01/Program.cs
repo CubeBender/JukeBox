@@ -65,7 +65,7 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // PRINT COMMANDS
 
-        // Printing results in g
+        // Printing results in specific color
         static void printSuccess(string text = "Unknown success!")
         {
             Console.ForegroundColor = Constants.SUCCESSCOLOR;
@@ -121,15 +121,25 @@ namespace JukeBox01
             JukeBox jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
             
 
-            string help = "You need help bro..."
-                    + "\n1. print jukebox, print jukebox all"
-                    + "\n   a) print name"
-                    + "\n   b) print author"
+            string help = "Now usable and working commands:"
+                    + "\n1. print"
+                    + "\n   a) print jukebox"
+                    + "\n       - print jukebox all"
+                    + "\n   b) print album"
+                    + "\n       - print album name <name>"
+                    + "\n       - print album artist <artist>"
+                    + "\n       - print album year <year>"
+                    + "\n   c) print song"
+                    + "\n       - print album name <name>"
+                    + "\n       - print album artist <artist>"
+                    + "\n       - print album year <year>"
+                    + "\n       - print album length <length> - in seconds"
                     + "\n2. change jukebox"
                     + "\n   a) change jukebox name <new name>"
                     + "\n   b) change jukebox author <new author>"
-                    + "\n3. export <filename>"
-                    + "\n4. close, exit, terminate, quit";
+                    + "\n3. export <filename>, saveas <filename>"
+                    + "\n4. close, exit, terminate, quit"
+                    + "\n\nNOTE: Searchwords are case sensitive at the moment.";
          
 
             bool exit = false;
@@ -164,6 +174,14 @@ namespace JukeBox01
                             case "all":
                             case "jukebox":
                                 jukeboxinstance.printJukeBox(Constants.RESULTCOLOR);
+                                break;
+
+                            case "name":
+                                printResult("Jukebox name: " + jukeboxinstance.getJukeboxName());
+                                break;
+
+                            case "author":
+                                printResult("Jukebox author: " + jukeboxinstance.getAuthorName());
                                 break;
 
                             case "album":
@@ -392,17 +410,18 @@ namespace JukeBox01
                     ////////////////////////////////////////////////////////////
                     // CHANGE
                     case "change":
-                        if (input.Length != 4 && input.Length < 4)
+                        if (input.Length < 4 || input[3] == "")
                         {
-                            printAlert("You must specify what you want to change and a new name!");
+                            printAlert("You must specify what you want to change and a new name!"
+                                + "\nType \"help\" or \"?\" for list of valid commands.");
                             break;
                         }
-                        if (input.Length != 4 && input.Length > 4)
+                        if (input.Length > 4)
                         {
                             printAlert("Too many arguments!");
                             break;
                         }
-                        else if (input[3] == "") { input[3] = "Unknown"; }
+
                         switch (input[1].ToLowerInvariant())
                         {
                             case "jukebox":

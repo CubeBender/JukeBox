@@ -25,7 +25,41 @@
     <albumSongs>
       <songName>Jsi moje mama</songName>
       <songLength>183</songLength>
-      <songText>Jsi moje mama, moje mama, kterou ja mam nadevse rad. Jsi jak kouzelna vila, co mi dava chut se smat!</songText>
+      <songText>
+        Jsi moje mama, moje mama, kterou ja mam nadevse rad. 
+        Jsi jak kouzelna vila, co mi dava chut se smat!
+      </songText>
     </albumSongs>
   </jukeboxAlbums>
+
+  <jukeboxAlbums>
+    <albumName>Fragile</albumName>
+    <albumArtist>Yes</albumArtist>
+    <albumGenre>Progresive rock</albumGenre>
+    <albumYear>1971</albumYear>
+    <albumSongs>497
+      <songName>Roundabout</songName>
+      <songLength>497</songLength>
+      <songText>
+        I'll be the roundabout 
+        The words will make you out an' out 
+      </songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>Cans and Brahms</songName>
+      <songLength>83</songLength>
+      <songText>xxx</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>We Have Heaven</songName>
+      <songLength>84</songLength>
+      <songText>xxx</songText>
+    </albumSongs>
+    <albumSongs>
+      <songName>South Side of the Sky</songName>
+      <songLength>481</songLength>
+      <songText>xxx</songText>
+    </albumSongs>
+  </jukeboxAlbums>
+  
 </JukeBox>

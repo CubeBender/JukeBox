@@ -118,17 +118,17 @@ namespace JukeBox01
 
         public void printAlbum()
         {
-            Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
+            Console.WriteLine("\nAlbum name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
         }
         public void printAlbum(ConsoleColor color)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
+            Console.WriteLine("\nAlbum name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
             Console.ResetColor();
         }
         public void printAlbumAll()
         {
-            Console.WriteLine("Album name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
+            Console.WriteLine("\nAlbum name: {0}, Artist: {1}, Year: {2}", this.name, this.artist, this.year);
             foreach (Song song in songs)
             {
                 song.printSong();
