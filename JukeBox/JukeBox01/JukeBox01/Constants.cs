@@ -19,10 +19,10 @@ namespace JukeBox01
         // FOLDER NAMES
 
         // Instance data path
-        public const string DATAFOLDER = "\\DATA";
+        public const string DATAFOLDER = "DATA";
 
         // Export data path
-        public const string EXPORTFOLDER = "\\EXPORT";
+        public const string EXPORTFOLDER = "EXPORT";
 
         ////////////////////////////////////////////////////////////
         // FILE NAMES

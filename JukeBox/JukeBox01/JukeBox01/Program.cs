@@ -17,31 +17,49 @@ namespace JukeBox01
         static JukeBox importFromXml(string path, string filename = Constants.EXPORTFILENAME)
         {
             // Set path to program directory if it is not specified
-            if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory; }
+            if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory + Constants.EXPORTFOLDER; }
             // Construct a serializer and set the type
             var serializer = new XmlSerializer(typeof(JukeBox));
             // Prepare readed data thru text stream
-            TextReader reader = new StreamReader(@"" + path + "\\" + filename + ".xml");
-            // Deserialize and return imported data
-            // Conversion of data is necessary and saving to variable as well, since we need to close the reader before returning the values
-            JukeBox import = (JukeBox)serializer.Deserialize(reader);
-            // This is the necessary closing of stream. If we do not close, the file is still in use and we can't access it for saving the data at the end.
-            reader.Close();
-            return import;
+            try
+            {
+                TextReader reader = new StreamReader(@"" + path + "\\" + filename + ".xml");
+                // Deserialize and return imported data
+                // Conversion of data is necessary and saving to variable as well, since we need to close the reader before returning the values
+                JukeBox import = (JukeBox)serializer.Deserialize(reader);
+                // This is the necessary closing of stream. If we do not close, the file is still in use and we can't access it for saving the data at the end.
+                reader.Close();
+                return import;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                printAlert("You do not have permission to access this file!");
+                return null;
+            }
         }
 
-        static void exportToXml(JukeBox jukebox, string path, string filename = Constants.EXPORTFILENAME)
+        static bool exportToXml(JukeBox jukebox, string path, string filename = Constants.EXPORTFILENAME)
         {
-            // Set path to program directory if it is not specified
-            if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory; }
-            // Construct a serializer and set the type
-            var serializer = new XmlSerializer(typeof(JukeBox));
-            // Prepare write data thru text stream
-            TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
-            // Serialize the specified data to file
-            serializer.Serialize(writer, jukebox);
-            // Manually closing the writer might be necessary!
-            writer.Close();
+            try
+            {
+                System.IO.Directory.CreateDirectory(path);
+                // Set path to program directory if it is not specified
+                if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory + Constants.EXPORTFOLDER; }
+                // Construct a serializer and set the type
+                var serializer = new XmlSerializer(typeof(JukeBox));
+                // Prepare write data thru text stream
+                TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
+                // Serialize the specified data to file
+                serializer.Serialize(writer, jukebox);
+                // Manually closing the writer might be necessary!
+                writer.Close();
+                return true;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                printAlert("You do not have permission to access this folder!");
+                return false;
+            }
         }
 
         ////////////////////////////////////////////////////////////
@@ -86,97 +104,28 @@ namespace JukeBox01
         // *************************************************
         static void Main(string[] args)
         {
-            // Testing XML Perzistance
+            ////////////////////////////////////////////////////////////
+            // FILE AND FILEPATH INITIALIZATION
 
+
+            // Setting default instance data file and path
             string instanceFileName = Constants.DATAFILENAME;
             string instanceFilePath = Constants.LOCALPATH + Constants.DATAFOLDER;
+            string exportFilePath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
 
-            // Loading saved data from last instance
+            // Creating directories
+            System.IO.Directory.CreateDirectory(instanceFilePath);
+            System.IO.Directory.CreateDirectory(exportFilePath);
+            
+            // Loading saved data from default instance
             JukeBox jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
-
-
-
+            
 
             string help = "You need help bro..."
                     + "\n1. print jukebox <all, author, name> or <-all, -author, -name>"
                     + "\n2. export <filename> or export jukebox <filename> - if filename is not declared, default will be used"
                     + "\n3. exit or quit";
-            
-            //while (!isValid)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Green;
-            //    if (input == "?" || input == "jukebox") input = "help";
-            //    if (input.Contains("export"))
-            //    {
-            //        filename = input.Replace("export", "");
-            //        filename = filename.Replace("jukebox", "");
-            //        if (filename == "") { filename = Constants.EXPORTFILENAME; }
-            //        input = "export";
-            //    }
-
-            //    if (input.Contains("change"))
-            //    {
-            //        string tmp = input.Replace("change", "");
-            //        newJukeboxName = tmp;
-            //        newAuthorName = tmp;
-            //        if (input.Contains("name"))
-            //        {
-            //            newJukeboxName = newJukeboxName.Replace("jukeboxname", "");
-            //            input = "changejukeboxname";
-            //        }
-            //        if (input.Contains("author"))
-            //        {
-            //            newAuthorName = newAuthorName.Replace("jukeboxauthor", "");
-            //            input = "changejukeboxauthor";
-            //        }
-            //        if (newJukeboxName == "" || newAuthorName == "")
-            //        {
-            //            newJukeboxName = jukeboxinstance.getJukeboxName();
-            //            newAuthorName = jukeboxinstance.getAuthorName();
-            //        }
-
-
-            //    }
-
-
-            //    switch (input.ToLowerInvariant())
-            //    {
-            //        case "printjukebox":
-            //        case "printjukeboxall":
-            //        case "printjukebox-all":
-            //            Console.WriteLine("Jukebox:\r\n");
-            //            jukeboxinstance.printJukeBox();
-            //            break;
-
-            //        case "printjukeboxname":
-            //        case "printjukebox-name":
-            //            Console.WriteLine("Jukebox name: " + jukeboxinstance.getJukeboxName());
-            //            break;
-
-            //        case "printjukeboxauthor":
-            //        case "printjukebox-author":
-            //            Console.WriteLine("Jukebox author: " + jukeboxinstance.getAuthorName());
-            //            break;
-
-            //        case "changejukeboxname":
-            //        case "changejukebox-name":
-            //            Console.WriteLine("Jukebox name " + jukeboxinstance.getJukeboxName()
-            //                + " has been changed to " + newJukeboxName + ".");
-            //            break;
-
-            //        case "changejukeboxauthor":
-            //        case "changejukebox-author":
-            //            Console.WriteLine("Jukebox author " + jukeboxinstance.getAuthorName()
-            //                + " has been changed to " + newAuthorName + ".");
-            //            break;
-
-            //        case "export":
-            //            Console.WriteLine("Jukebox has been exported as " + filename + ".xml!");
-            //            exportToXml(jukeboxinstance, Constants.LOCALPATH + Constants.EXPORTPATH, filename);
-            //            break;
-            //    }
-            //}
-
+         
 
             bool exit = false;
             do
@@ -305,6 +254,7 @@ namespace JukeBox01
                                     ////////////////////////////////////////////////////////////
                                     // PRINT ALBUM DEFAULT
                                     default:
+                                        printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                         break;
                                 }
                                 break;
@@ -480,12 +430,104 @@ namespace JukeBox01
                         break;
                     ////////////////////////////////////////////////////////////
                     // IMPORT
+                    case "import":
+                    case "load":
+                        if (input.Length < 2)
+                        {
+                            printAlert("You must specify what to import!");
+                            break;
+                        }
+
+                        break;
 
                     ////////////////////////////////////////////////////////////
                     // EXPORT
+                    case "export":
+                    case "saveas":
+                        if (input.Length < 2)
+                        {
+                            printAlert("You must specify the name of the file!");
+                            break;
+                        }
+                        else if (input.Length < 3)
+                        {
+                            if (exportToXml(jukeboxinstance, exportFilePath, input[1]))
+                            {
+                                printSuccess("File successully exported as \"" + input[1] + "\" to " + Constants.LOCALPATH + Constants.EXPORTFOLDER);
+                            }
+                            break;
+                        }
+                        else if (input.Length < 4)
+                        {
+                            try
+                            {
+                                System.IO.Directory.CreateDirectory(input[2]);
+                            }
+                            catch (UnauthorizedAccessException)
+                            {
+                                printAlert("You do not have permition to access this directory!");
+                                break;
+                            }
+                            if (exportToXml(jukeboxinstance, input[2], input[1]))
+                            {
+                                printSuccess("File successully exported as \"" + input[1] + ".xml\" to " + input[2]);
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            printAlert("Too many arguments!");
+                        }
+                        break;
+
+                    ////////////////////////////////////////////////////////////
+                    // OPEN
+                    case "open":
+                        if (input.Length < 2)
+                        {
+                            printAlert("You must specify the name of the file!");
+                            break;
+                        }
+                        else if (input.Length < 3)
+                        {
+                            instanceFileName = input[1];
+                            instanceFilePath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
+                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
+                            if (jukeboxinstance == null)
+                            {
+                                printAlert("No data was loaded! File is empty or doesn't exist!");
+                                break;
+                            }
+                            printSuccess("Successully loaded file \"" + instanceFileName + "\" from " + instanceFilePath);
+                            break;
+                        }
+                        else if (input.Length < 4)
+                        {
+                            instanceFileName = input[1];
+                            instanceFilePath = input[2];
+                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
+                            if (jukeboxinstance == null)
+                            {
+                                printAlert("No data was loaded! File is empty or doesn't exist!");
+                                break;
+                            }
+                            printSuccess("Successully loaded file \"" + instanceFileName + "\" from " + instanceFilePath);
+                            break;
+                        }
+                        else
+                        {
+                            printAlert("Too many arguments!");
+                        }
+                        break;
 
                     ////////////////////////////////////////////////////////////
                     // SAVE
+                    case "save":
+                        if (exportToXml(jukeboxinstance, instanceFilePath, instanceFileName))
+                        {
+                            printSuccess("Data saved to \"" + instanceFileName + ".xml\" at " + instanceFilePath);
+                        }
+                        break;
 
                     ////////////////////////////////////////////////////////////
                     // JUKEBOX
@@ -502,6 +544,15 @@ namespace JukeBox01
                     case "quit":
                     case "close":
                     case "terminate":
+                        // Quicker way of exiting without saving
+                        // Use "exit nosave" command
+                        if (input.Length > 1)
+                        {
+                            if (input[1] == "nosave" || input[1] == "ns" )
+                            {
+                                Environment.Exit(0);
+                            }
+                        }
                         exit = true;
                         break;
 
