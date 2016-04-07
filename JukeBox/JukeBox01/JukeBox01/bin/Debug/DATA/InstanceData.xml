@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <JukeBox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <jukeboxName>TomiJukebox</jukeboxName>
   <jukeboxAuthor>CubeBender</jukeboxAuthor>
@@ -46,7 +46,6 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Fragile</albumName>
     <albumArtist>Yes</albumArtist>
@@ -76,7 +75,6 @@
       <songText>xxx</songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Greatest Hits</albumName>
     <albumArtist>Blink-182</albumArtist>
@@ -103,7 +101,6 @@
       <songText>xxx</songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Veselé zpívánky</albumName>
     <albumArtist>Maxim Turbulenc</albumArtist>
@@ -115,7 +112,6 @@
       <songText>ne</songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Static Chronicle</albumName>
     <albumArtist>Backdraft Smiths</albumArtist>
@@ -147,7 +143,6 @@
       <songText>bbb</songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>My World 2.0</albumName>
     <albumArtist>Justin Bieber</albumArtist>
@@ -232,12 +227,11 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Under the Mistletoe</albumName>
     <albumArtist>Justin Bieber</albumArtist>
     <albumGenre>Pop</albumGenre>
-    <albumYear>2011 </albumYear>
+    <albumYear>2011</albumYear>
     <albumSongs>
       <songName>Mistletoe</songName>
       <songLength>192</songLength>
@@ -291,7 +285,6 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Believe</albumName>
     <albumArtist>Justin Bieber</albumArtist>
@@ -334,7 +327,6 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Meet Miley Cyrus</albumName>
     <albumArtist>Miley Cyrus</albumArtist>
@@ -408,7 +400,6 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
-
   <jukeboxAlbums>
     <albumName>Purpose</albumName>
     <albumArtist>Justin Bieber</albumArtist>
@@ -497,5 +488,4 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
-  
 </JukeBox>
