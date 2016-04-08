@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <JukeBox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <jukeboxName>TomiJukebox</jukeboxName>
   <jukeboxAuthor>CubeBender</jukeboxAuthor>
@@ -46,6 +46,7 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Fragile</albumName>
     <albumArtist>Yes</albumArtist>
@@ -62,19 +63,26 @@
     <albumSongs>
       <songName>Cans and Brahms</songName>
       <songLength>83</songLength>
-      <songText>xxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>We Have Heaven</songName>
       <songLength>84</songLength>
-      <songText>xxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>South Side of the Sky</songName>
       <songLength>481</songLength>
-      <songText>xxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Greatest Hits</albumName>
     <albumArtist>Blink-182</albumArtist>
@@ -83,35 +91,59 @@
     <albumSongs>
       <songName>Dammit</songName>
       <songLength>147</songLength>
-      <songText>xxxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>The Rock Show</songName>
       <songLength>151</songLength>
-      <songText>xxxxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>First Date</songName>
       <songLength>151</songLength>
-      <songText>xxxxxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>All The Small Things</songName>
       <songLength>151</songLength>
-      <songText>xxx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Veselé zpívánky</albumName>
     <albumArtist>Maxim Turbulenc</albumArtist>
     <albumGenre>THC</albumGenre>
     <albumYear>2000</albumYear>
     <albumSongs>
-      <songName>Jede Jede Mašinka</songName>
+      <songName>
+        Jede Jede Mašinka
+      </songName>
       <songLength>9999</songLength>
-      <songText>ne</songText>
+      <songText>
+        Jede jede mašinka kouří se jí z komínka
+        jede jede do dáli, veze samý vožralý
+        jede jede do dáli, veze samý vožralý.
+
+        Neusínej nechoď spát, neusínej nechoď spát
+        až do rána bílýho, my budem zpívat a budem hrát
+        až do rána bílýho, my budem zpívat a budem hrát.
+
+        Lásko má jsi jediná, do třinácti nevinná
+        vyhrnu si rukávy, praštím s tebou do trávy
+        vyhrnu si rukávy, praštím s tebou do trávy
+      </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Static Chronicle</albumName>
     <albumArtist>Backdraft Smiths</albumArtist>
@@ -120,29 +152,40 @@
     <albumSongs>
       <songName>Candle Flames</songName>
       <songLength>333</songLength>
-      <songText>yyy</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>We'll start our race</songName>
       <songLength>1</songLength>
-      <songText>xx</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>The Brave</songName>
       <songLength>219</songLength>
-      <songText>ccc</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>Pancrase</songName>
       <songLength>441</songLength>
-      <songText>vvv</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
     <albumSongs>
       <songName>I Wish</songName>
       <songLength>312</songLength>
-      <songText>bbb</songText>
+      <songText>
+        Sound of silence..
+      </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>My World 2.0</albumName>
     <albumArtist>Justin Bieber</albumArtist>
@@ -227,11 +270,12 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Under the Mistletoe</albumName>
     <albumArtist>Justin Bieber</albumArtist>
     <albumGenre>Pop</albumGenre>
-    <albumYear>2011</albumYear>
+    <albumYear>2011 </albumYear>
     <albumSongs>
       <songName>Mistletoe</songName>
       <songLength>192</songLength>
@@ -285,6 +329,7 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Believe</albumName>
     <albumArtist>Justin Bieber</albumArtist>
@@ -327,6 +372,7 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Meet Miley Cyrus</albumName>
     <albumArtist>Miley Cyrus</albumArtist>
@@ -400,6 +446,7 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+
   <jukeboxAlbums>
     <albumName>Purpose</albumName>
     <albumArtist>Justin Bieber</albumArtist>
@@ -488,4 +535,5 @@
       </songText>
     </albumSongs>
   </jukeboxAlbums>
+  
 </JukeBox>

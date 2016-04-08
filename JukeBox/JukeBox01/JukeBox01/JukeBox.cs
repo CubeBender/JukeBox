@@ -182,6 +182,35 @@ namespace JukeBox01
             }
             return resultList;
         }
+        // Search albums by genre
+        public List<Album> searchAlbumByGenre(string genre)
+        {
+            List<Album> resultList = new List<Album>();
+            foreach (Album album in albums)
+            {
+                if (album.genre.ToLowerInvariant() == genre.ToLowerInvariant())
+                {
+                    resultList.Add(album);
+                }
+            }
+            return resultList;
+        }
+        // Search song by genre
+        public List<Song> searchSongByGenre(string genre)
+        {
+            List<Song> resultList = new List<Song>();
+            foreach (Album album in albums)
+            {
+                if (album.genre.ToLowerInvariant() == genre.ToLowerInvariant())
+                {
+                    foreach (Song song in album.songs)
+                    {
+                        resultList.Add(song);
+                    }
+                }
+            }
+            return resultList;
+        }
         // Search song by length
         public List<Song> searchSongByLength(string length)
         {

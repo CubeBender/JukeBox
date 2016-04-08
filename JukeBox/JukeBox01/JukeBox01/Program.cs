@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Xml.Serialization;
 
 namespace JukeBox01
@@ -14,6 +15,7 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // IMPORT / EXPORT FUNCTIONS
 
+        // Import
         static JukeBox importFromXml(string path, string filename = Constants.EXPORTFILENAME)
         {
             // Set path to program directory if it is not specified
@@ -33,7 +35,7 @@ namespace JukeBox01
             }
             catch (FileNotFoundException)
             {
-                printAlert("No data was imported! File is empty or doesn't exist!");
+                printAlert("No data was imported! File doesn't exist!");
                 return null;
             }
             catch (UnauthorizedAccessException)
@@ -42,7 +44,7 @@ namespace JukeBox01
                 return null;
             }
         }
-
+        // Export
         static bool exportToXml(JukeBox jukebox, string path, string filename = Constants.EXPORTFILENAME)
         {
             try
@@ -118,19 +120,42 @@ namespace JukeBox01
             tmpFile = tmpFile.Replace(":", "");
             tmpFile = tmpFile.Replace(" ", "_");
 
+            // Creating instance variables' dummys
+            string dummyinstancefilename = null;
+            string dummyinstancefilepath = null;
+
             // Setting default instance data file and path
-            string instanceFileName = Constants.DATAFILENAME;
-            string instanceFilePath = Constants.LOCALPATH + Constants.DATAFOLDER;
+            string instancefilename = Constants.DATAFILENAME;
+            string instancefilepath = Constants.LOCALPATH + Constants.DATAFOLDER;
             string exportFilePath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
 
             // Creating directories
-            System.IO.Directory.CreateDirectory(instanceFilePath);
+            System.IO.Directory.CreateDirectory(instancefilepath);
             System.IO.Directory.CreateDirectory(exportFilePath);
-            
-            // Loading saved data from default instance
-            JukeBox jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
 
-            printComment( "Imported file: " + instanceFileName + ".xml" 
+            // Creating instance dummy
+            JukeBox dummyjukeboxinstance = null;
+            JukeBox jukeboxinstance = null;
+            // Loading saved data from default instance
+            dummyjukeboxinstance = importFromXml(instancefilepath, instancefilename);
+            // Creating new instance of jukebox if we load null
+            if (dummyjukeboxinstance == null)
+            {
+                printAlert("No previous instance found or file is empty. Creating a new empty instance!");
+                printResult("What is your name?");
+                string jukeboxName = Console.ReadLine();
+                printResult("What is the name of this JukeBox?");
+                string jukeboxAuthor = Console.ReadLine();
+                jukeboxinstance = new JukeBox(jukeboxName, jukeboxAuthor);
+                exportToXml(jukeboxinstance, instancefilepath, instancefilename);
+                printResult("New instance created! Rebooting JukeBox!");
+                Thread.Sleep(3000);
+                Console.Clear();
+            }
+            // If load is successfull, continue with jukeboxinstance
+            else { jukeboxinstance = dummyjukeboxinstance; }
+            
+            printComment( "Instance file: " + instancefilename + ".xml" 
                 + "\nJukebox name: " + jukeboxinstance.getJukeboxName()
                 + "\nCreated by: " + jukeboxinstance.getAuthorName());
 
@@ -143,10 +168,12 @@ namespace JukeBox01
                     + "\n       - print album name <name>"
                     + "\n       - print album artist <artist>"
                     + "\n       - print album year <year>"
+                    + "\n       - print album genre <genre>"
                     + "\n   c) print song"
                     + "\n       - print album name <name>"
                     + "\n       - print album artist <artist>"
                     + "\n       - print album year <year>"
+                    + "\n       - print album genre <genre>"
                     + "\n       - print album length <length> - in seconds"
                     + "\n2. change"
                     + "\n   a) change jukebox name <new name>"
@@ -192,7 +219,15 @@ namespace JukeBox01
                             // PRINT ALL
                             case "all":
                             case "jukebox":
-                                jukeboxinstance.printJukeBox(Constants.RESULTCOLOR);
+                                if (jukeboxinstance != null)
+                                {
+                                    jukeboxinstance.printJukeBox(Constants.RESULTCOLOR);
+                                    break;
+                                }
+                                else
+                                {
+                                    printAlert("Jukebox is empty :(");
+                                }
                                 break;
 
                             case "name":
@@ -294,6 +329,28 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
+                                    // PRINT ALBUM GENRE
+                                    case "genre":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Album> albumList = jukeboxinstance.searchAlbumByGenre(expression);
+                                            // If no album was found, we print alert
+                                            if (albumList.Count > 0)
+                                            {
+                                                foreach (Album album in albumList)
+                                                {
+                                                    album.printAlbum(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the genre!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
                                     // PRINT ALBUM DEFAULT
                                     default:
                                         printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
@@ -408,6 +465,27 @@ namespace JukeBox01
                                         }
                                         // If no argument was given, print alert
                                         else { printAlert("You must specify the length of the song!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PRINT SONG GENRE
+                                    case "genre":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Song> songList = jukeboxinstance.searchSongByGenre(expression);
+                                            if (songList.Count > 0)
+                                            {
+                                                foreach (Song song in songList)
+                                                {
+                                                    song.printSong(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the genre of the song!"); }
                                         break;
 
                                     ////////////////////////////////////////////////////////////
@@ -438,7 +516,7 @@ namespace JukeBox01
                         switch (input[1].ToLowerInvariant())
                         {
                             ////////////////////////////////////////////////////////////
-                            // PRINT ALL
+                            // PLAY ALL
                             case "all":
                             case "jukebox":
                                 // Function, which will play songs in ordre.
@@ -464,7 +542,7 @@ namespace JukeBox01
                                 switch (input[2].ToLowerInvariant())
                                 {
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT ALBUM NAME
+                                    // PLAY ALBUM NAME
                                     case "name":
                                         if (input.Length >= 4)
                                         {
@@ -494,7 +572,7 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT ALBUM ARTIST
+                                    // PLAY ALBUM ARTIST
                                     case "artist":
                                         if (input.Length >= 4)
                                         {
@@ -524,7 +602,7 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT ALBUM YEAR
+                                    // PLAY ALBUM YEAR
                                     case "year":
                                         if (input.Length >= 4)
                                         {
@@ -546,14 +624,36 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT ALBUM DEFAULT
+                                    // PLAY ALBUM GENRE
+                                    case "genre":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Album> albumList = jukeboxinstance.searchAlbumByGenre(expression);
+                                            // If no album was found, we print alert
+                                            if (albumList.Count > 0)
+                                            {
+                                                foreach (Album album in albumList)
+                                                {
+                                                    album.printAlbumAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the genre!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PLAY ALBUM DEFAULT
                                     default:
                                         printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                         break;
                                 }
                                 break;
                             ////////////////////////////////////////////////////////////
-                            // PRINT SONG
+                            // PLAY SONG
                             case "song":
                                 if (input.Length < 3)
                                 {
@@ -563,7 +663,7 @@ namespace JukeBox01
                                 switch (input[2].ToLowerInvariant())
                                 {
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT SONG NAME
+                                    // PLAY SONG NAME
                                     case "name":
                                         if (input.Length >= 4)
                                         {
@@ -592,7 +692,7 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT SONG ARTIST
+                                    // PLAY SONG ARTIST
                                     case "artist":
                                         if (input.Length >= 4)
                                         {
@@ -621,7 +721,7 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT SONG YEAR
+                                    // PLAY SONG YEAR
                                     case "year":
                                         if (input.Length >= 4)
                                         {
@@ -642,7 +742,7 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT SONG LENGTH
+                                    // PLAY SONG LENGTH
                                     case "length":
                                         if (input.Length >= 4)
                                         {
@@ -663,7 +763,28 @@ namespace JukeBox01
                                         break;
 
                                     ////////////////////////////////////////////////////////////
-                                    // PRINT SONG DEFAULT
+                                    // PLAY SONG GENRE
+                                    case "genre":
+                                        if (input.Length >= 4)
+                                        {
+                                            string expression = input[3];
+                                            List<Song> songList = jukeboxinstance.searchSongByGenre(expression);
+                                            if (songList.Count > 0)
+                                            {
+                                                foreach (Song song in songList)
+                                                {
+                                                    song.printSongAll(Constants.RESULTCOLOR);
+                                                }
+                                                break;
+                                            }
+                                            else { printAlert("No matches found for \"" + expression + "\"!"); }
+                                        }
+                                        // If no argument was given, print alert
+                                        else { printAlert("You must specify the genre of the song!"); }
+                                        break;
+
+                                    ////////////////////////////////////////////////////////////
+                                    // PLAY SONG DEFAULT
                                     default:
                                         printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                         break;
@@ -671,7 +792,7 @@ namespace JukeBox01
                                 break;
 
                             ////////////////////////////////////////////////////////////
-                            // PRINT DEFAULT
+                            // PLAY DEFAULT
                             default:
                                 printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                 break;
@@ -734,17 +855,20 @@ namespace JukeBox01
                         }
                         else if (input.Length < 3)
                         {
-                            instanceFileName = input[1];
-                            instanceFilePath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
-
-                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
-                            if (jukeboxinstance == null)
+                            // Zkouska nacteni souboru
+                            dummyinstancefilename = input[1];
+                            dummyinstancefilepath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
+                            dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
+                            if (dummyjukeboxinstance == null)
                             {
-                                //printAlert("No data was loaded! File is empty or doesn't exist!");
-                                //ADDED EXCEPTION in importFromXml for not existing file 
+                                // Neuspech
+                                printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
-                            printSuccess("Successully loaded file \"" + instanceFileName + "\" from " + instanceFilePath);
+                            // Uspech pri nacteni souboru a ulozeni hodnot
+                            instancefilename = dummyinstancefilename;
+                            jukeboxinstance = dummyjukeboxinstance;
+                            printSuccess("Successully loaded file \"" + instancefilename + "\" from " + instancefilepath);
                             fileopened = false;
                             printComment("\nJukebox name: " + jukeboxinstance.getJukeboxName()
                                 + "\nCreated by: " + jukeboxinstance.getAuthorName());
@@ -752,16 +876,21 @@ namespace JukeBox01
                         }
                         else if (input.Length < 4)
                         {
-                            instanceFileName = input[1];
-                            instanceFilePath = input[2];
-                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
-                            if (jukeboxinstance == null)
+                            // Zkouska nacteni souboru
+                            dummyinstancefilename = input[1];
+                            dummyinstancefilepath = input[2];
+                            dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
+                            if (dummyjukeboxinstance == null)
                             {
-                                //printAlert("No data was loaded! File is empty or doesn't exist!");
-                                //ADDED EXCEPTION in importFromXml for not existing file
+                                // Neuspech
+                                printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
-                            printSuccess("Successully loaded file \"" + instanceFileName + "\" from " + instanceFilePath);
+                            // Uspech pri nacteni souboru a ulozeni hodnot
+                            instancefilename = dummyinstancefilename;
+                            instancefilepath = dummyinstancefilepath;
+                            jukeboxinstance = dummyjukeboxinstance;
+                            printSuccess("Successully loaded file \"" + instancefilename + "\" from " + instancefilepath);
                             fileopened = true;
                             break;
                         }
@@ -785,8 +914,9 @@ namespace JukeBox01
                             if (exportToXml(jukeboxinstance, exportFilePath, input[1]))
                             {
                                 printSuccess("File successully exported as \"" + input[1] + ".xml\" to " + Constants.LOCALPATH + Constants.EXPORTFOLDER);
-                                jukeboxinstance = importFromXml(exportFilePath, input[1]);
+                                break;
                             }
+                            printAlert("Something went wrong");
                             break;
                         }
                         else if (input.Length < 4)
@@ -802,9 +932,10 @@ namespace JukeBox01
                             }
                             if (exportToXml(jukeboxinstance, input[2], input[1]))
                             {
-                                jukeboxinstance = importFromXml(input[2], input[1]);
                                 printSuccess("File successully exported as \"" + input[1] + ".xml\" to " + input[2]);
+                                break;
                             }
+                            printAlert("Something went wrong");
                             break;
                         }
                         else
@@ -823,16 +954,19 @@ namespace JukeBox01
                         }
                         else if (input.Length < 3)
                         {
-                            instanceFileName = input[1];
-                            instanceFilePath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
-
-                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
-                            if (jukeboxinstance == null)
+                            dummyinstancefilename = input[1];
+                            dummyinstancefilepath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
+                            
+                            dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
+                            if (dummyjukeboxinstance == null)
                             {
-                                //printAlert("No data was loaded! File is empty or doesn't exist!");
+                                printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
-                            printSuccess("Successully loaded file \"" + instanceFileName + ".xml\" from " + instanceFilePath);
+                            instancefilename = dummyinstancefilename;
+                            instancefilepath = dummyinstancefilepath;
+                            jukeboxinstance = dummyjukeboxinstance;
+                            printSuccess("Successully loaded file \"" + instancefilename + ".xml\" from " + instancefilepath);
                             fileopened = true;
                             printComment("\nJukebox name: " + jukeboxinstance.getJukeboxName()
                                 + "\nCreated by: " + jukeboxinstance.getAuthorName());
@@ -840,15 +974,18 @@ namespace JukeBox01
                         }
                         else if (input.Length < 4)
                         {
-                            instanceFileName = input[1];
-                            instanceFilePath = input[2];
-                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
-                            if (jukeboxinstance == null)
+                            dummyinstancefilename = input[1];
+                            dummyinstancefilepath = input[2];
+                            dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
+                            if (dummyjukeboxinstance == null)
                             {
-                                //printAlert("No data was loaded! File is empty or doesn't exist!");
+                                printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
-                            printSuccess("Successully loaded file \"" + instanceFileName + ".xml\" from " + instanceFilePath);
+                            instancefilename = dummyinstancefilename;
+                            instancefilepath = dummyinstancefilepath;
+                            jukeboxinstance = dummyjukeboxinstance;
+                            printSuccess("Successully loaded file \"" + instancefilename + ".xml\" from " + instancefilepath);
                             fileopened = true;
                             break;
                         }
@@ -861,14 +998,21 @@ namespace JukeBox01
                     ////////////////////////////////////////////////////////////
                     // SAVE
                     case "save":
-                        if ((exportToXml(jukeboxinstance, instanceFilePath, instanceFileName)) && fileopened == true)
+                        if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
                         {
-                            printSuccess("Data saved to \"" + instanceFileName + ".xml\" at " + instanceFilePath);
-                            jukeboxinstance = importFromXml(instanceFilePath, instanceFileName);
+                            if (fileopened == true)
+                            {
+                                printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
+                            }
+                            else
+                            {
+                                printSuccess("Data saved.");
+                            }
                         }
                         else
                         {
-                            printAlert("Can't save! No file was opened!\nUse \"export <filename>\" or \"saveas <filename>\" to create new file.");
+                            printAlert("Data not saved!");
+                            //printAlert("Can't save! No file was opened!\nUse \"export <filename>\" or \"saveas <filename>\" to create new file.");
                         }
                         break;
 
@@ -923,13 +1067,25 @@ namespace JukeBox01
                     Console.WriteLine("\nSaving data!");
                     if (fileopened == true)
                     {
-                        exportToXml(jukeboxinstance, instanceFilePath, instanceFileName);
-                        printSuccess("Data saved to \"" + instanceFileName + ".xml\" at " + instanceFilePath);
+                        if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
+                        {
+                            printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
+                        }
+                        else
+                        {
+                            printAlert("Data not saved! At this point I think you're to blame..");
+                        }
                     }
                     else
                     {
-                        exportToXml(jukeboxinstance, instanceFilePath, tmpFile);
-                        printSuccess("Data saved to \"" + tmpFile + ".xml\" at " + instanceFilePath);
+                        if (exportToXml(jukeboxinstance, instancefilepath, tmpFile))
+                        {
+                            printSuccess("Data saved to \"" + tmpFile + ".xml\" at " + instancefilepath);
+                        }
+                        else
+                        {
+                            printAlert("Data not saved! At this point I think you're to blame..");
+                        }
                     }
                     exit = true;
                     
@@ -939,6 +1095,7 @@ namespace JukeBox01
                     printAlert("\nExiting without saving!");
                     exit = true;
                 }
+                Console.WriteLine("\n");
             } while (exit != true);
             Console.WriteLine("Press any key to exit the JukeBox.");
 
