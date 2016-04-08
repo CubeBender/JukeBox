@@ -170,23 +170,39 @@ namespace JukeBox01
                     + "\n       - print album year <year>"
                     + "\n       - print album genre <genre>"
                     + "\n   c) print song"
-                    + "\n       - print album name <name>"
-                    + "\n       - print album artist <artist>"
-                    + "\n       - print album year <year>"
-                    + "\n       - print album genre <genre>"
-                    + "\n       - print album length <length> - in seconds"
+                    + "\n       - print song name <name>"
+                    + "\n       - print song artist <artist>"
+                    + "\n       - print song year <year>"
+                    + "\n       - print song genre <genre>"
+                    + "\n       - print song length <length> - in seconds"
                     + "\n2. change"
                     + "\n   a) change jukebox name <new name>"
                     + "\n   b) change jukebox author <new author>"
-                    + "\n3. work with files"
+                    + "\n3. play"
+                    + "\n   a) play all"
+                    + "\n       - play jukebox"
+                    + "\n   b) play shuffle" //random order of songs
+                    + "\n       - play random" //one random song
+                    + "\n   c) play album"
+                    + "\n       - play album name"
+                    + "\n       - play album artist"
+                    + "\n       - play album year"
+                    + "\n       - play album genre"
+                    + "\n   c) play song"
+                    + "\n       - play song name"
+                    + "\n       - play song artist"
+                    + "\n       - play song year"
+                    + "\n       - play song genre"
+                    + "\n       - play song length"
+                    + "\n4. work with files"
                     + "\n   a) open <filename>, save"
                     + "\n   b) import <filename>, load <filename>"
                     + "\n   c) export <filename>, saveas <filename>"
-                    + "\n4. close, exit, terminate, quit"
+                    + "\n5. close, exit, terminate, quit"
                     + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving.";
 
             // bool fileimported = false;
-            bool fileOpened = false;
+           bool fileOpened = false;
             bool exit = false;
             do
             {
@@ -511,19 +527,18 @@ namespace JukeBox01
                             printAlert("You must specify what you want to play!");
                             break;
                         }
-
                         switch (input[1].ToLowerInvariant())
                         {
                             ////////////////////////////////////////////////////////////
                             // PLAY ALL
                             case "all":
                             case "jukebox":
-                                // Function, which will play songs in ordre.
+                                // Function, which will play songs in order.
                                 printComment("To be implemented..");
                                 break;
 
                             case "shuffle":
-                                // Function, which will play songs in ordre.
+                                // Function, which will play songs in random order.
                                 printComment("To be implemented..");
                                 break;
 
@@ -1011,7 +1026,6 @@ namespace JukeBox01
                         else
                         {
                             printAlert("Data not saved!");
-                            //printAlert("Can't save! No file was opened!\nUse \"export <filename>\" or \"saveas <filename>\" to create new file.");
                         }
                         break;
 
