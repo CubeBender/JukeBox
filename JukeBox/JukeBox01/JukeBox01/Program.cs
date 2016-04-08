@@ -183,11 +183,10 @@ namespace JukeBox01
                     + "\n   b) import <filename>, load <filename>"
                     + "\n   c) export <filename>, saveas <filename>"
                     + "\n4. close, exit, terminate, quit"
-                    + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving."
-                    + "\n\nNOTE: Searchwords are case sensitive at the moment.";
+                    + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving.";
 
             // bool fileimported = false;
-            bool fileopened = false;
+            bool fileOpened = false;
             bool exit = false;
             do
             {
@@ -869,7 +868,7 @@ namespace JukeBox01
                             instancefilename = dummyinstancefilename;
                             jukeboxinstance = dummyjukeboxinstance;
                             printSuccess("Successully loaded file \"" + instancefilename + "\" from " + instancefilepath);
-                            fileopened = false;
+                            fileOpened = false;
                             printComment("\nJukebox name: " + jukeboxinstance.getJukeboxName()
                                 + "\nCreated by: " + jukeboxinstance.getAuthorName());
                             break;
@@ -891,7 +890,7 @@ namespace JukeBox01
                             instancefilepath = dummyinstancefilepath;
                             jukeboxinstance = dummyjukeboxinstance;
                             printSuccess("Successully loaded file \"" + instancefilename + "\" from " + instancefilepath);
-                            fileopened = true;
+                            fileOpened = true;
                             break;
                         }
                         else
@@ -967,7 +966,7 @@ namespace JukeBox01
                             instancefilepath = dummyinstancefilepath;
                             jukeboxinstance = dummyjukeboxinstance;
                             printSuccess("Successully loaded file \"" + instancefilename + ".xml\" from " + instancefilepath);
-                            fileopened = true;
+                            fileOpened = true;
                             printComment("\nJukebox name: " + jukeboxinstance.getJukeboxName()
                                 + "\nCreated by: " + jukeboxinstance.getAuthorName());
                             break;
@@ -986,7 +985,7 @@ namespace JukeBox01
                             instancefilepath = dummyinstancefilepath;
                             jukeboxinstance = dummyjukeboxinstance;
                             printSuccess("Successully loaded file \"" + instancefilename + ".xml\" from " + instancefilepath);
-                            fileopened = true;
+                            fileOpened = true;
                             break;
                         }
                         else
@@ -1000,7 +999,7 @@ namespace JukeBox01
                     case "save":
                         if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
                         {
-                            if (fileopened == true)
+                            if (fileOpened == true)
                             {
                                 printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
                             }
@@ -1065,7 +1064,7 @@ namespace JukeBox01
                 if (key == 'y' || key == 'Y')
                 {
                     Console.WriteLine("\nSaving data!");
-                    if (fileopened == true)
+                    if (fileOpened == true)
                     {
                         if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
                         {
