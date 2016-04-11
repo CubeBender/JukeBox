@@ -55,7 +55,7 @@ namespace JukeBox01
                 // Construct a serializer and set the type
                 var serializer = new XmlSerializer(typeof(JukeBox));
                 // Prepare write data thru text stream
-                TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
+                 TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
                 // Serialize the specified data to file
                 serializer.Serialize(writer, jukebox);
                 // Manually closing the writer might be necessary!
@@ -108,11 +108,11 @@ namespace JukeBox01
             ////////////////////////////////////////////////////////////
             // FILE AND FILEPATH INITIALIZATION
 
-            // Making tmp file for exiting without opened file but want to save file.
+            /* Making tmp file for exiting without opened file but want to save file.
             string tmpFile = "tmp_" + DateTime.Now.ToString("G");
             tmpFile = tmpFile.Replace(":", "");
             tmpFile = tmpFile.Replace(" ", "_");
-
+            */
             // Creating instance variables' dummys
             string dummyinstancefilename = null;
             string dummyinstancefilepath = null;
@@ -1094,29 +1094,18 @@ namespace JukeBox01
                 char key = Console.ReadKey().KeyChar;
                 if (key == 'y' || key == 'Y')
                 {
-                    Console.WriteLine("\nSaving data!");
-                    if (fileOpened == true)
+                Console.WriteLine("\nSaving data!");
+                    if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
                     {
-                        if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
-                        {
-                            printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
-                        }
-                        else
-                        {
-                            printAlert("Data not saved! At this point I think you're to blame..");
-                        }
+                        printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
                     }
                     else
                     {
-                        if (exportToXml(jukeboxinstance, instancefilepath, tmpFile))
-                        {
-                            printSuccess("Data saved to \"" + tmpFile + ".xml\" at " + instancefilepath);
-                        }
-                        else
-                        {
-                            printAlert("Data not saved! At this point I think you're to blame..");
-                        }
+                        printAlert("Data not saved! At this point I think you're to blame..");
                     }
+                   
+                    
+                    
                     exit = true;
                     
                 }
