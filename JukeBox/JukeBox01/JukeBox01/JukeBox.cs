@@ -101,7 +101,7 @@ namespace JukeBox01
             List<Album> resultList = new List<Album>();
             foreach (Album album in albums)
             {
-                if (album.name.ToLowerInvariant() == name.ToLowerInvariant())
+                if (album.name.ToLowerInvariant().Contains(name.ToLowerInvariant()))
                 {
                     resultList.Add(album);
                 }
@@ -116,7 +116,7 @@ namespace JukeBox01
             {
                 foreach (Song song in album.songs)
                 {
-                    if (song.name.ToLowerInvariant() == name.ToLowerInvariant())
+                    if (song.name.ToLowerInvariant().Contains(name.ToLowerInvariant()))
                     {
                         resultList.Add(song);
                     }
@@ -130,7 +130,7 @@ namespace JukeBox01
             List<Album> resultList = new List<Album>();
             foreach (Album album in albums)
             {
-                if (album.artist.ToLowerInvariant() == artist.ToLowerInvariant())
+                if (album.artist.ToLowerInvariant().Contains(artist.ToLowerInvariant()))
                 {
                     resultList.Add(album);
                 }
@@ -143,7 +143,7 @@ namespace JukeBox01
             List<Song> resultList = new List<Song>();
             foreach (Album album in albums)
             {
-                if (album.artist.ToLowerInvariant() == artist.ToLowerInvariant())
+                if (album.artist.ToLowerInvariant().Contains(artist.ToLowerInvariant()))
                 {
                     foreach (Song song in album.songs)
                     {
@@ -188,7 +188,7 @@ namespace JukeBox01
             List<Album> resultList = new List<Album>();
             foreach (Album album in albums)
             {
-                if (album.genre.ToLowerInvariant() == genre.ToLowerInvariant())
+                if (album.genre.ToLowerInvariant().Contains(genre.ToLowerInvariant()))
                 {
                     resultList.Add(album);
                 }
@@ -201,7 +201,7 @@ namespace JukeBox01
             List<Song> resultList = new List<Song>();
             foreach (Album album in albums)
             {
-                if (album.genre.ToLowerInvariant() == genre.ToLowerInvariant())
+                if (album.genre.ToLowerInvariant().Contains(genre.ToLowerInvariant()))
                 {
                     foreach (Song song in album.songs)
                     {

@@ -55,7 +55,7 @@ namespace JukeBox01
                 // Construct a serializer and set the type
                 var serializer = new XmlSerializer(typeof(JukeBox));
                 // Prepare write data thru text stream
-                TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
+                 TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
                 // Serialize the specified data to file
                 serializer.Serialize(writer, jukebox);
                 // Manually closing the writer might be necessary!
@@ -108,11 +108,11 @@ namespace JukeBox01
             ////////////////////////////////////////////////////////////
             // FILE AND FILEPATH INITIALIZATION
 
-            // Making tmp file for exiting without opened file but want to save file.
+            /* Making tmp file for exiting without opened file but want to save file.
             string tmpFile = "tmp_" + DateTime.Now.ToString("G");
             tmpFile = tmpFile.Replace(":", "");
             tmpFile = tmpFile.Replace(" ", "_");
-
+            */
             // Creating instance variables' dummys
             string dummyinstancefilename = null;
             string dummyinstancefilepath = null;
@@ -812,19 +812,20 @@ namespace JukeBox01
                     // CHANGE
                     case "change":
                         // If we want to expand the change command list, we need to handle the arguments differently (see print or play command)
-                        if (input.Length < 4 )// || input[3] == "" this would have thrown a excetion if input.length was < 4 !!
+                        if (input.Length < 4)
                         {
                             // If too few arguments are given
                             printAlert("You must specify what you want to change and a new name!"
                                 + "\nType \"help\" or \"?\" for list of valid commands.");
                             break;
                         }
-                        if (input.Length > 4)
-                        {
-                            // Too many arguments are given - This prevents multi-word names! 
-                            printAlert("Too many arguments!");
-                            break;
-                        }
+
+                        //if (input.Length > 4)
+                        //{
+                        //    // Too many arguments are given - This prevents multi-word names! 
+                        //    printAlert("Too many arguments!");
+                        //    break;
+                        //}
 
                         switch (input[1].ToLowerInvariant())
                         {
@@ -856,6 +857,66 @@ namespace JukeBox01
                                     // CHANGE JUKEBOX DEFAULT
                                     default:
                                         printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                        break;
+                                }
+                                break;
+
+                            ////////////////////////////////////////////////////////////
+                            // CHANGE SONG
+                            case "song":
+                                switch (input[2].ToLowerInvariant())
+                                {
+                                    case "name":
+                                        if (input.Length >= 4)
+                                        {
+                                            // Join the rest of arguments into string
+                                            string expression = input[3];
+                                            int i = 4;
+                                            while (i < input.Length)
+                                            {
+                                                expression = expression + " " + input[i];
+                                                i++;
+                                            }
+                                            // Use the Joint argument to find the song(s)
+                                            List<Song> songList = jukeboxinstance.searchSongByName(expression);
+
+                                            bool isGood = true;
+                                            int x = 0;
+                                            do
+                                            {
+                                                isGood = true;
+                                                i = 0;
+                                                foreach (Song song in songList)
+                                                {
+                                                    i++;
+                                                    printResult(i + ") Name: " + song.name + " - Length: " + song.length);
+                                                }
+                                                printAlert("Choose a song!");
+                                                try
+                                                {
+                                                    x = int.Parse(Console.ReadKey().KeyChar.ToString());
+                                                }
+                                                catch (Exception)
+                                                {
+                                                    isGood = false;
+                                                    printAlert("\nYou must enter a number!");
+                                                }
+                                                if (x > i)
+                                                {
+                                                    isGood = false;
+                                                    printAlert("\nYou must enter a VALID number!");
+                                                }
+                                            } while (!isGood);
+                                            printResult("\nPlease enter new name:");
+
+                                            expression = Console.ReadLine();
+
+                                            songList[x - 1].changeName(expression);
+                                            printSuccess();
+
+                                        }
+                                        else { printAlert("No matches found for \"" + input[2] + "\"!"); }
+
                                         break;
                                 }
                                 break;
@@ -1094,29 +1155,16 @@ namespace JukeBox01
                 char key = Console.ReadKey().KeyChar;
                 if (key == 'y' || key == 'Y')
                 {
-                    Console.WriteLine("\nSaving data!");
-                    if (fileOpened == true)
+                Console.WriteLine("\nSaving data!");
+                    if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
                     {
-                        if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
-                        {
-                            printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
-                        }
-                        else
-                        {
-                            printAlert("Data not saved! At this point I think you're to blame..");
-                        }
+                        printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
                     }
                     else
                     {
-                        if (exportToXml(jukeboxinstance, instancefilepath, tmpFile))
-                        {
-                            printSuccess("Data saved to \"" + tmpFile + ".xml\" at " + instancefilepath);
-                        }
-                        else
-                        {
-                            printAlert("Data not saved! At this point I think you're to blame..");
-                        }
+                        printAlert("Data not saved! At this point I think you're to blame..");
                     }
+                   
                     exit = true;
                     
                 }
