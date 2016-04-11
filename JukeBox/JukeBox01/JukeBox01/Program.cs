@@ -55,7 +55,7 @@ namespace JukeBox01
                 // Construct a serializer and set the type
                 var serializer = new XmlSerializer(typeof(JukeBox));
                 // Prepare write data thru text stream
-                 TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
+                TextWriter writer = new StreamWriter(@"" + path + "\\" + filename + ".xml");
                 // Serialize the specified data to file
                 serializer.Serialize(writer, jukebox);
                 // Manually closing the writer might be necessary!
@@ -819,6 +819,12 @@ namespace JukeBox01
                                 + "\nType \"help\" or \"?\" for list of valid commands.");
                             break;
                         }
+                        if (input.Length > 4)
+                        {
+                            // Too many arguments are given - This prevents multi-word names! 
+                            printAlert("Too many arguments!");
+                            break;
+                        }
 
                         //if (input.Length > 4)
                         //{
@@ -1155,16 +1161,18 @@ namespace JukeBox01
                 char key = Console.ReadKey().KeyChar;
                 if (key == 'y' || key == 'Y')
                 {
-                Console.WriteLine("\nSaving data!");
-                    if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
-                    {
-                        printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
-                    }
-                    else
-                    {
-                        printAlert("Data not saved! At this point I think you're to blame..");
-                    }
+                    Console.WriteLine("\nSaving data!");
+                        if (exportToXml(jukeboxinstance, instancefilepath, instancefilename))
+                        {
+                            printSuccess("Data saved to \"" + instancefilename + ".xml\" at " + instancefilepath);
+                        }
+                        else
+                        {
+                            printAlert("Data not saved! At this point I think you're to blame..");
+                        }
                    
+                    
+                    
                     exit = true;
                     
                 }
