@@ -72,7 +72,7 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // PRINT COMMANDS
 
-        // Printing results in specific color
+        // Printing results in specific color. Colors are deternimed in Constants class
         static void printSuccess(string text = "Unknown success!")
         {
             Console.ForegroundColor = Constants.SUCCESSCOLOR;
@@ -100,12 +100,6 @@ namespace JukeBox01
             Console.ResetColor();
         }
 
-        ////////////////////////////////////////////////////////////
-        // INSTANCE INITIALIZATION
-
-        // TO DO ?
-
-
         // *************************************************
         // **************** Main program *******************
         // *************************************************
@@ -113,7 +107,6 @@ namespace JukeBox01
         {
             ////////////////////////////////////////////////////////////
             // FILE AND FILEPATH INITIALIZATION
-
 
             // Making tmp file for exiting without opened file but want to save file.
             string tmpFile = "tmp_" + DateTime.Now.ToString("G");
@@ -136,8 +129,10 @@ namespace JukeBox01
             // Creating instance dummy
             JukeBox dummyjukeboxinstance = null;
             JukeBox jukeboxinstance = null;
+
             // Loading saved data from default instance
             dummyjukeboxinstance = importFromXml(instancefilepath, instancefilename);
+
             // Creating new instance of jukebox if we load null
             if (dummyjukeboxinstance == null)
             {
@@ -816,30 +811,40 @@ namespace JukeBox01
                     ////////////////////////////////////////////////////////////
                     // CHANGE
                     case "change":
-                        if (input.Length < 4 || input[3] == "")
+                        // If we want to expand the change command list, we need to handle the arguments differently (see print or play command)
+                        if (input.Length < 4 )// || input[3] == "" this would have thrown a excetion if input.length was < 4 !!
                         {
+                            // If too few arguments are given
                             printAlert("You must specify what you want to change and a new name!"
                                 + "\nType \"help\" or \"?\" for list of valid commands.");
                             break;
                         }
                         if (input.Length > 4)
                         {
+                            // Too many arguments are given - This prevents multi-word names! 
                             printAlert("Too many arguments!");
                             break;
                         }
 
                         switch (input[1].ToLowerInvariant())
                         {
+                            ////////////////////////////////////////////////////////////
+                            // CHANGE JUKEBOX
                             case "jukebox":
                                 switch (input[2].ToLowerInvariant())
                                 {
+                                    ////////////////////////////////////////////////////////////
+                                    // CHANGE JUKEBOX NAME
                                     case "name":
+                                        // Changing the name of jukebox
                                         string oldJukeboxName = jukeboxinstance.getJukeboxName();
                                         string newJukeboxName = input[3];
                                         jukeboxinstance.changeJukeboxName(newJukeboxName);
                                         printSuccess("Jukebox \"" + oldJukeboxName + "\" has been renamed as \"" + newJukeboxName + "\".");
                                         break;
 
+                                    ////////////////////////////////////////////////////////////
+                                    // CHANGE AUTHOR
                                     case "author":
                                         string oldAuthorName = jukeboxinstance.getAuthorName();
                                         string newAuthorName = input[3];
@@ -847,12 +852,16 @@ namespace JukeBox01
                                         printSuccess("Author \"" + oldAuthorName + "\" has been changed to \"" + newAuthorName + "\".");
                                         break;
 
+                                    ////////////////////////////////////////////////////////////
+                                    // CHANGE JUKEBOX DEFAULT
                                     default:
                                         printAlert("Cannot find command \"" + input[2] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                         break;
                                 }
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // CHANGE DEFAULT
                             default:
                                 printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                 break;
@@ -869,18 +878,19 @@ namespace JukeBox01
                         }
                         else if (input.Length < 3)
                         {
-                            // Zkouska nacteni souboru
+                            // Trying to load a file
                             dummyinstancefilename = input[1];
                             dummyinstancefilepath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
                             dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
                             if (dummyjukeboxinstance == null)
                             {
-                                // Neuspech
+                                // Failure
                                 printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
-                            // Uspech pri nacteni souboru a ulozeni hodnot
+                            // Success loading the file and data
                             instancefilename = dummyinstancefilename;
+                            // Changing the instance
                             jukeboxinstance = dummyjukeboxinstance;
                             printSuccess("Successully loaded file \"" + instancefilename + "\" from " + instancefilepath);
                             fileOpened = false;
@@ -890,17 +900,17 @@ namespace JukeBox01
                         }
                         else if (input.Length < 4)
                         {
-                            // Zkouska nacteni souboru
+                            // Trying to load a file
                             dummyinstancefilename = input[1];
                             dummyinstancefilepath = input[2];
                             dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
                             if (dummyjukeboxinstance == null)
                             {
-                                // Neuspech
+                                // Failure
                                 printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
-                            // Uspech pri nacteni souboru a ulozeni hodnot
+                            // Success loading the file and data
                             instancefilename = dummyinstancefilename;
                             instancefilepath = dummyinstancefilepath;
                             jukeboxinstance = dummyjukeboxinstance;
@@ -910,6 +920,7 @@ namespace JukeBox01
                         }
                         else
                         {
+                            // If too many arguments are given
                             printAlert("Too many arguments!");
                         }
                         break;
@@ -920,6 +931,7 @@ namespace JukeBox01
                     case "saveas":
                         if (input.Length < 2)
                         {
+                            // If no filename was given
                             printAlert("You must specify the name of the file!");
                             break;
                         }
@@ -970,13 +982,15 @@ namespace JukeBox01
                         {
                             dummyinstancefilename = input[1];
                             dummyinstancefilepath = Constants.LOCALPATH + Constants.EXPORTFOLDER;
-                            
+                            // Trying to load a file
                             dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
                             if (dummyjukeboxinstance == null)
                             {
+                                // Failure
                                 printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
+                            // Success loading the file and data
                             instancefilename = dummyinstancefilename;
                             instancefilepath = dummyinstancefilepath;
                             jukeboxinstance = dummyjukeboxinstance;
@@ -990,12 +1004,15 @@ namespace JukeBox01
                         {
                             dummyinstancefilename = input[1];
                             dummyinstancefilepath = input[2];
+                            // Trying to load a file
                             dummyjukeboxinstance = importFromXml(dummyinstancefilepath, dummyinstancefilename);
                             if (dummyjukeboxinstance == null)
                             {
+                                // Failure
                                 printAlert("No data loaded! Reverting to previous instance.");
                                 break;
                             }
+                            // Success loading the file and data
                             instancefilename = dummyinstancefilename;
                             instancefilepath = dummyinstancefilepath;
                             jukeboxinstance = dummyjukeboxinstance;
