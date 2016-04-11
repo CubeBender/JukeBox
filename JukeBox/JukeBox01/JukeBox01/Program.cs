@@ -213,7 +213,7 @@ namespace JukeBox01
                     case "?":
                         printComment(help);
                         break;
-
+                    
                     ////////////////////////////////////////////////////////////
                     // PRINT
                     case "print":
@@ -802,6 +802,80 @@ namespace JukeBox01
 
                             ////////////////////////////////////////////////////////////
                             // PLAY DEFAULT
+                            default:
+                                printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
+                                break;
+                        }
+                        break;
+
+                    ////////////////////////////////////////////////////////////
+                    // ADD
+                    case "add":
+                    case "create":
+                        if (input.Length < 3)
+                        {
+                            // If too few arguments are given
+                            printAlert("You must specify what you want to add!"
+                                + "\nType \"help\" or \"?\" for list of valid commands.");
+                            break;
+                        }
+                        switch (input[1].ToLowerInvariant())
+                        {
+                            ////////////////////////////////////////////////////////////
+                            // ADD ALBUM
+                            case "album":
+                                if (input[2] == "")
+                                {   //If string contains nothing, print alert and break
+                                    printAlert("You must specify what you want to add!"
+                                        + "\nType \"help\" or \"?\" for list of valid commands.");
+                                    break;
+                                }
+                                try
+                                {
+                                    string albumName = input[2];
+                                    int i = 3;
+                                    //If album name has more than one word, it will join them to single string.
+                                    while (i < input.Length) 
+                                    {
+                                        albumName = albumName + " " + input[i]; 
+                                        i++;
+                                    }
+                                    //Trimming whitespaces at the start/end
+                                    albumName = albumName.TrimStart(' ');
+                                    albumName = albumName.TrimEnd(' ');
+                                    printSuccess("\nCreating new album with name \"" + albumName + "\".");
+                                    printResult("\nEnter Artist: ");
+                                    string albumArtist = Console.ReadLine();
+                                    //Trimming whitespaces at the start/end
+                                    albumArtist = albumArtist.TrimStart(' ');
+                                    albumArtist = albumArtist.TrimEnd(' ');
+                                    printResult("\nEnter Genre: ");
+                                    string albumGenre = Console.ReadLine();
+                                    //Trimming whitespaces at the start/end
+                                    albumGenre = albumGenre.TrimStart(' ');
+                                    albumGenre = albumGenre.TrimEnd(' ');
+                                    //Getting current year
+                                    int currentDate = DateTime.Now.Year;
+                                    int albumYear = 0;
+                                    bool valid = true;
+                                    //Year must be between 0 and our current year
+                                    do
+                                    {
+                                        valid = true;
+                                        printResult("\nEnter Year: ");
+                                        try { albumYear = int.Parse(Console.ReadLine()); } //If there is any error
+                                        catch { valid = false; } //Year is not valid
+                                        if (!valid) { printAlert("You did not enter valid year.\nTry again, please."); }
+                                    } while (albumYear < 0 || albumYear > currentDate || valid == false );
+                                    //Creating album
+                                    jukeboxinstance.addAlbum(albumName, albumArtist, albumGenre, albumYear);
+                                    printSuccess("\nNew album \"" + albumName + "\" created!");
+                                }
+                                //If there is any error within TRY, do what is in CATCH
+                                catch { printAlert("There was an error with creating new album."); }
+
+                                break;
+
                             default:
                                 printAlert("Cannot find command \"" + input[1] + "\". Type \"help\" or \"?\" for list of valid commands.");
                                 break;
