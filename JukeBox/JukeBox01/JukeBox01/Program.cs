@@ -819,12 +819,6 @@ namespace JukeBox01
                                 + "\nType \"help\" or \"?\" for list of valid commands.");
                             break;
                         }
-                        if (input.Length > 4)
-                        {
-                            // Too many arguments are given - This prevents multi-word names! 
-                            printAlert("Too many arguments!");
-                            break;
-                        }
 
                         //if (input.Length > 4)
                         //{
