@@ -171,8 +171,12 @@ namespace JukeBox01
                     + "\n       - print song genre <genre>"
                     + "\n       - print song length <length> - in seconds"
                     + "\n2. change"
-                    + "\n   a) change jukebox name <new name>"
-                    + "\n   b) change jukebox author <new author>"
+                    + "\n   a) change jukebox"
+                    + "\n       - change jukebox name <new name>"
+                    + "\n       - change jukebox author <new author>"
+                    + "\n   c) change song"
+                    + "\n       - change song name"
+                    + "\n       NOTE: You will be prompted to choose new name after it finds specific song."
                     + "\n3. play"
                     + "\n   a) play all"
                     + "\n       - play jukebox"
@@ -197,7 +201,7 @@ namespace JukeBox01
                     + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving.";
 
             // bool fileimported = false;
-           bool fileOpened = false;
+            bool fileOpened = false;
             bool exit = false;
             do
             {
