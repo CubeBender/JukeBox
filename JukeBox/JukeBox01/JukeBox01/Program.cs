@@ -869,8 +869,8 @@ namespace JukeBox01
                                         printResult("\nEnter Year: ");
                                         try { albumYear = int.Parse(Console.ReadLine()); } //If there is any error
                                         catch { valid = false; } //Year is not valid
-                                        if (!valid) { printAlert("You did not enter valid year.\nTry again, please."); }
-                                    } while (albumYear < 0 || albumYear > currentDate || valid == false );
+                                        if (!valid || albumYear < 0 || albumYear > currentDate) { printAlert("You did not enter valid year.\nTry again, please."); }
+                                    } while (albumYear < 0 || albumYear > currentDate || !valid );
                                     //Creating album
                                     jukeboxinstance.addAlbum(albumName, albumArtist, albumGenre, albumYear);
                                     printSuccess("\nNew album \"" + albumName + "\" created!");

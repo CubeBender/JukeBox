@@ -119,18 +119,18 @@ namespace JukeBox01
         // Print only album info
         public void printAlbum()
         {
-            Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            Console.WriteLine("\nAlbum: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
         }
         public void printAlbum(ConsoleColor color)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            Console.WriteLine("\nAlbum: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             Console.ResetColor();
         }
         // Print album info and songs' info
         public void printAlbumContent()
         {
-            Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            Console.WriteLine("\nAlbum: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             foreach (Song song in songs)
             {
                 song.printSong();
@@ -139,7 +139,7 @@ namespace JukeBox01
         public void printAlbumContent(ConsoleColor color)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine("Album name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            Console.WriteLine("Album: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             foreach (Song song in songs)
             {
                 song.printSong();
@@ -149,7 +149,7 @@ namespace JukeBox01
         // Print album info and songs' info and text
         public void printAlbumAll()
         {
-            Console.WriteLine("\nAlbum name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            Console.WriteLine("\nAlbum: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             foreach (Song song in songs)
             {
                 song.printSongAll();
@@ -158,7 +158,7 @@ namespace JukeBox01
         public void printAlbumAll(ConsoleColor color)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine("Album name: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
+            Console.WriteLine("Album: {0}\nArtist: {1}\nGenre: {2}\nYear: {3}", this.name, this.artist, this.genre, this.year);
             foreach (Song song in songs)
             {
                 song.printSongAll();
