@@ -839,9 +839,9 @@ namespace JukeBox01
                                     string albumName = input[2];
                                     int i = 3;
                                     //If album name has more than one word, it will join them to single string.
-                                    while (i < input.Length) 
+                                    while (i < input.Length)
                                     {
-                                        albumName = albumName + " " + input[i]; 
+                                        albumName = albumName + " " + input[i];
                                         i++;
                                     }
                                     //Trimming whitespaces at the start/end
@@ -870,10 +870,61 @@ namespace JukeBox01
                                         try { albumYear = int.Parse(Console.ReadLine()); } //If there is any error
                                         catch { valid = false; } //Year is not valid
                                         if (!valid || albumYear < 0 || albumYear > currentDate) { printAlert("You did not enter valid year.\nTry again, please."); }
-                                    } while (albumYear < 0 || albumYear > currentDate || !valid );
+                                    } while (albumYear < 0 || albumYear > currentDate || !valid);
                                     //Creating album
                                     jukeboxinstance.addAlbum(albumName, albumArtist, albumGenre, albumYear);
                                     printSuccess("\nNew album \"" + albumName + "\" created!");
+                                }
+                                //If there is any error within TRY, do what is in CATCH
+                                catch { printAlert("There was an error with creating new album."); }
+
+                                break;
+
+                            case "song":
+                                if (input[2] == "")
+                                {   //If string contains nothing, print alert and break
+                                    printAlert("You must specify what you want to add!"
+                                        + "\nType \"help\" or \"?\" for list of valid commands.");
+                                    break;
+                                }
+                                try
+                                {
+                                    string songName = input[2];
+                                    int i = 3;
+                                    //If song name has more than one word, it will join them to single string.
+                                    while (i < input.Length)
+                                    {
+                                        songName = songName + " " + input[i];
+                                        i++;
+                                    }
+                                    //Trimming whitespaces at the start/end
+                                    songName = songName.TrimStart(' ');
+                                    songName = songName.TrimEnd(' ');
+                                    printSuccess("\nCreating song \"" + songName + "\".");
+                                    printResult("\nEnter album: ");
+                                    string songAlbum = Console.ReadLine();
+                                    //If length is valid
+                                    bool valid = true;
+                                    int songLength = 0;
+                                    do
+                                    {
+                                        valid = true;
+                                        printResult("\nEnter Length: ");
+                                        try { songLength = int.Parse(Console.ReadLine()); } //If there is any error
+                                        catch { valid = false; } //length is not valid
+                                        if (!valid || songLength < 0) { printAlert("You did not enter valid length.\nTry again, please."); }
+                                    } while (!valid || songLength < 0);
+
+                                    printResult("\nEnter lyrics: ");
+                                    string songText = Console.ReadLine();
+
+                                    //Creating song
+                                    Song newSong = new Song(songName, songLength, songText);
+                                    //Converting seconds to minutes
+                                    TimeSpan convert = TimeSpan.FromSeconds(songLength);
+                                    string songLengthMins = convert.ToString(@"mm\:ss");
+                                    //Printing success
+                                    printSuccess("\nNew song \"" + songName + "\" with length " + songLengthMins + " created!");
                                 }
                                 //If there is any error within TRY, do what is in CATCH
                                 catch { printAlert("There was an error with creating new album."); }
