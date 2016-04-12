@@ -95,6 +95,38 @@ namespace JukeBox01
         ////////////////////////////////////////////////////////////
         // SEARCH METHODS
 
+
+        // Get album index 
+        public int searchForAlbumIndex(string name)
+        {
+            int index = -1;
+            int albumIndex = -1;
+            {
+                //for (int i = 0; i < getNumAlbums(); i++)
+                //{
+                foreach (Album album in albums)
+                {
+                    index++;
+                    if (album.name.ToLowerInvariant() == name.ToLowerInvariant())
+                    {
+                        albumIndex = index;
+                    }
+                }
+                //}
+            }
+            return albumIndex;
+        }
+        // Search albums by name
+        public List<Album> getAllAlbums()
+        {
+            List<Album> resultList = new List<Album>();
+            foreach (Album album in albums)
+            {
+                resultList.Add(album);
+            }
+            return resultList;
+        }
+
         // Search albums by name
         public List<Album> searchAlbumByName(string name)
         {

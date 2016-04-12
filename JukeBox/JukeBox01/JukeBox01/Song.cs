@@ -61,13 +61,13 @@ namespace JukeBox01
         public void printSongAll()
         {
             Console.WriteLine(" Song: {0} - Length: {1}", this.name, this.length);
-            Console.WriteLine(this.text);
+            Console.WriteLine(" Lyrics: " + this.text);
         }
         public void printSongAll(ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(" Song: {0} - Length: {1}", this.name, this.length);
-            Console.WriteLine(this.text);
+            Console.WriteLine(" Lyrics: " + this.text);
             Console.ResetColor();
         }
 

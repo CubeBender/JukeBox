@@ -170,14 +170,19 @@ namespace JukeBox01
                     + "\n       - print song year <year>"
                     + "\n       - print song genre <genre>"
                     + "\n       - print song length <length> - in seconds"
-                    + "\n2. change"
+                    + "\n2. add/create"
+                    + "\n   a) add/create album"
+                    + "\n       - add album <name>, create album <name>"
+                    + "\n   c) add,create song"
+                    + "\n       - add song <name>, create song <name>"
+                    + "\n3. change"
                     + "\n   a) change jukebox"
                     + "\n       - change jukebox name <new name>"
                     + "\n       - change jukebox author <new author>"
                     + "\n   c) change song"
                     + "\n       - change song name"
                     + "\n       NOTE: You will be prompted to choose new name after it finds specific song."
-                    + "\n3. play"
+                    + "\n4. play"
                     + "\n   a) play all"
                     + "\n       - play jukebox"
                     + "\n   b) play shuffle" //random order of songs
@@ -193,11 +198,11 @@ namespace JukeBox01
                     + "\n       - play song year"
                     + "\n       - play song genre"
                     + "\n       - play song length"
-                    + "\n4. work with files"
+                    + "\n5. work with files"
                     + "\n   a) open <filename>, save"
                     + "\n   b) import <filename>, load <filename>"
                     + "\n   c) export <filename>, saveas <filename>"
-                    + "\n5. close, exit, terminate, quit"
+                    + "\n6. close, exit, terminate, quit"
                     + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving.";
 
             // bool fileimported = false;
@@ -889,6 +894,7 @@ namespace JukeBox01
                                 }
                                 try
                                 {
+                                    bool valid = true;
                                     string songName = input[2];
                                     int i = 3;
                                     //If song name has more than one word, it will join them to single string.
@@ -901,15 +907,30 @@ namespace JukeBox01
                                     songName = songName.TrimStart(' ');
                                     songName = songName.TrimEnd(' ');
                                     printSuccess("\nCreating song \"" + songName + "\".");
-                                    printResult("\nEnter album: ");
-                                    string songAlbum = Console.ReadLine();
+                                    string songAlbum = "Unknown album";
+                                    int albumIndex = -1;
+                                    do
+                                    {
+                                        int x = 1;
+                                        valid = true;
+                                        List<Album> albums = jukeboxinstance.getAllAlbums();
+                                        foreach(Album album in albums)
+                                        {
+                                            printComment(x + ") Album: " + album.name + " - Artist: " + album.artist);
+                                            x++;
+                                        }
+                                        printResult("\nEnter album: ");
+                                        songAlbum = Console.ReadLine();
+                                        albumIndex = jukeboxinstance.searchForAlbumIndex(songAlbum);
+                                        if (albumIndex < 0) { valid = false; printAlert("This album doesn't exist." 
+                                            + "\nTry again, please."); }
+                                    } while (!valid);
                                     //If length is valid
-                                    bool valid = true;
                                     int songLength = 0;
                                     do
                                     {
                                         valid = true;
-                                        printResult("\nEnter Length: ");
+                                        printResult("\nEnter length: ");
                                         try { songLength = int.Parse(Console.ReadLine()); } //If there is any error
                                         catch { valid = false; } //length is not valid
                                         if (!valid || songLength < 0) { printAlert("You did not enter valid length.\nTry again, please."); }
@@ -917,14 +938,11 @@ namespace JukeBox01
 
                                     printResult("\nEnter lyrics: ");
                                     string songText = Console.ReadLine();
-
                                     //Creating song
                                     Song newSong = new Song(songName, songLength, songText);
-                                    //Converting seconds to minutes
-                                    TimeSpan convert = TimeSpan.FromSeconds(songLength);
-                                    string songLengthMins = convert.ToString(@"mm\:ss");
+                                    jukeboxinstance.albums[albumIndex].addSong(newSong);
                                     //Printing success
-                                    printSuccess("\nNew song \"" + songName + "\" with length " + songLengthMins + " created!");
+                                    printSuccess("\nNew song \"" + songName + "\" added to album \"" + songAlbum + "\".");
                                 }
                                 //If there is any error within TRY, do what is in CATCH
                                 catch { printAlert("There was an error with creating new album."); }
