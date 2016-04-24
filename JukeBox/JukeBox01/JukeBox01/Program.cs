@@ -548,7 +548,7 @@ namespace JukeBox01
 
                             case "random":
                                 // Function, which will play a random song.
-                                printComment("To be implemented..");
+                                jukeboxinstance.playRandom();
                                 break;
 
                             case "album":

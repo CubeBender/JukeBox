@@ -284,6 +284,25 @@ namespace JukeBox01
         }
 
         ////////////////////////////////////////////////////////////
+        // PLAY METHODS
+
+        public void playRandom()
+        {
+            Album songList = new Album();
+            foreach (Album album in albums)
+            {
+                foreach (Song song in album.songs)
+                {
+                    songList.addSong(song);
+                }
+            }
+            Random random = new Random();
+            int selected = random.Next(0, songList.getNumSongs() - 1);
+            songList.songs[selected].printSongAll();
+        }
+
+
+        ////////////////////////////////////////////////////////////
         // UTILITY METHODS
 
         // Utility functions of JukeBox
