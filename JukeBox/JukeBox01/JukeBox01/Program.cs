@@ -543,7 +543,31 @@ namespace JukeBox01
 
                             case "shuffle":
                                 // Function, which will play songs in random order.
-                                printComment("To be implemented..");
+                                bool play = true;
+                                while (play)
+                                {
+                                    jukeboxinstance.playRandom();
+
+                                    char key = 'a';
+                                    printSuccess("Do you want to play another song? (Y/N)");
+                                    key = Console.ReadKey().KeyChar;
+                                    switch (key)
+                                    {
+                                        case 'n':
+                                        case 'N':
+                                            play = false;
+                                            printAlert("\nEnding shuffle mode.");
+                                            break;
+                                        case 'y':
+                                        case 'Y':
+                                            Console.WriteLine("\n");
+                                            break;
+                                        default:
+                                            play = false;
+                                            printAlert(" is not a valid input! Ending shuffle mode.");
+                                            break;
+                                    }
+                                }
                                 break;
 
                             case "random":
@@ -1298,7 +1322,7 @@ namespace JukeBox01
             exit = false;
             do
             {
-                Console.WriteLine("Do you want to save? Y/N");
+                Console.WriteLine("Do you want to save? (Y/N)");
                 char key = Console.ReadKey().KeyChar;
                 if (key == 'y' || key == 'Y')
                 {
