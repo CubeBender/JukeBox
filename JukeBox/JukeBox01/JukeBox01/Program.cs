@@ -19,7 +19,7 @@ namespace JukeBox01
         static JukeBox importFromXml(string path, string filename = Constants.EXPORTFILENAME)
         {
             // Set path to program directory if it is not specified
-            if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory + Constants.EXPORTFOLDER; }
+            if (path == "") { path = Constants.LOCALPATH + Constants.EXPORTFOLDER; }
             // Construct a serializer and set the type
             var serializer = new XmlSerializer(typeof(JukeBox));
             // Prepare readed data thru text stream
@@ -51,7 +51,7 @@ namespace JukeBox01
             {
                 System.IO.Directory.CreateDirectory(path);
                 // Set path to program directory if it is not specified
-                if (path == "") { path = System.AppDomain.CurrentDomain.BaseDirectory + Constants.EXPORTFOLDER; }
+                if (path == "") { path = Constants.LOCALPATH + Constants.EXPORTFOLDER; }
                 // Construct a serializer and set the type
                 var serializer = new XmlSerializer(typeof(JukeBox));
                 // Prepare write data thru text stream
@@ -79,6 +79,7 @@ namespace JukeBox01
             Console.WriteLine(text);
             Console.ResetColor();
         }
+
         static void printResult(string text = "Empty result!")
         {
             Console.ForegroundColor = Constants.RESULTCOLOR;
@@ -154,60 +155,12 @@ namespace JukeBox01
                 + "\nJukebox name: " + jukeboxinstance.getJukeboxName()
                 + "\nCreated by: " + jukeboxinstance.getAuthorName());
 
-            string help = "Now usable and working commands:"
-                    + "\n1. print"
-                    + "\n   a) print all"
-                    + "\n       - print jukebox"
-                    + "\n       - print jukebox all"
-                    + "\n   b) print album"
-                    + "\n       - print album name <name>"
-                    + "\n       - print album artist <artist>"
-                    + "\n       - print album year <year>"
-                    + "\n       - print album genre <genre>"
-                    + "\n   c) print song"
-                    + "\n       - print song name <name>"
-                    + "\n       - print song artist <artist>"
-                    + "\n       - print song year <year>"
-                    + "\n       - print song genre <genre>"
-                    + "\n       - print song length <length> - in seconds"
-                    + "\n2. add/create"
-                    + "\n   a) add/create album"
-                    + "\n       - add album <name>, create album <name>"
-                    + "\n   c) add,create song"
-                    + "\n       - add song <name>, create song <name>"
-                    + "\n3. change"
-                    + "\n   a) change jukebox"
-                    + "\n       - change jukebox name <new name>"
-                    + "\n       - change jukebox author <new author>"
-                    + "\n   c) change song"
-                    + "\n       - change song name"
-                    + "\n       NOTE: You will be prompted to choose new name after it finds specific song."
-                    + "\n4. play"
-                    + "\n   a) play all"
-                    + "\n       - play jukebox"
-                    + "\n   b) play shuffle" //random order of songs
-                    + "\n       - play random" //one random song
-                    + "\n   c) play album"
-                    + "\n       - play album name"
-                    + "\n       - play album artist"
-                    + "\n       - play album year"
-                    + "\n       - play album genre"
-                    + "\n   c) play song"
-                    + "\n       - play song name"
-                    + "\n       - play song artist"
-                    + "\n       - play song year"
-                    + "\n       - play song genre"
-                    + "\n       - play song length"
-                    + "\n5. work with files"
-                    + "\n   a) open <filename>, save"
-                    + "\n   b) import <filename>, load <filename>"
-                    + "\n   c) export <filename>, saveas <filename>"
-                    + "\n6. close, exit, terminate, quit"
-                    + "\n   - use \"nosave\" or \"ns\" after one of the closing commands for quick exit without saving.";
+            string help = Constants.HELP;
 
             // bool fileimported = false;
             bool fileOpened = false;
             bool exit = false;
+
             do
             {
                 // Console.Clear();
@@ -249,14 +202,20 @@ namespace JukeBox01
                                 }
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // PRINT NAME
                             case "name":
                                 printResult("Jukebox name: " + jukeboxinstance.getJukeboxName());
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // PRINT AUTHOR
                             case "author":
                                 printResult("Jukebox author: " + jukeboxinstance.getAuthorName());
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // PRINT ALBUM
                             case "album":
                                 if (input.Length < 3)
                                 {
@@ -541,6 +500,8 @@ namespace JukeBox01
                                 printComment("To be implemented..");
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // PLAY SHUFFLE
                             case "shuffle":
                                 // Function, which will play songs in random order.
                                 bool play = true;
@@ -570,11 +531,15 @@ namespace JukeBox01
                                 }
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // PLAY RANDOM
                             case "random":
                                 // Function, which will play a random song.
                                 jukeboxinstance.playRandom();
                                 break;
 
+                            ////////////////////////////////////////////////////////////
+                            // PLAY ALBUM
                             case "album":
                                 if (input.Length < 3)
                                 {
@@ -908,6 +873,9 @@ namespace JukeBox01
                                 catch { printAlert("There was an error with creating new album."); }
 
                                 break;
+
+                            ////////////////////////////////////////////////////////////
+                            // ADD SONG
 
                             case "song":
                                 if (input[2] == "")
@@ -1279,14 +1247,14 @@ namespace JukeBox01
                         break;
 
                     ////////////////////////////////////////////////////////////
-                    // JUKEBOX
-
-                    ////////////////////////////////////////////////////////////
-                    // ALBUM
-
-                    ////////////////////////////////////////////////////////////
-                    // SONG
-
+                    // CLEAR
+                    case "clear":
+                    case "jar":
+                        Console.Clear();
+                        printComment("Instance file: " + instancefilename + ".xml"
+                            + "\nJukebox name: " + jukeboxinstance.getJukeboxName()
+                            + "\nCreated by: " + jukeboxinstance.getAuthorName());
+                        break;
                     ////////////////////////////////////////////////////////////
                     // TERMINATION
                     case "exit":
